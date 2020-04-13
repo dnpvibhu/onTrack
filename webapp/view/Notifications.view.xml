@@ -1,0 +1,12 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.wipro.vts.controller.Notifications"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Notifications" showHeader="true" showNavButton="true" navButtonPress="navBack" class="trucksPage">
+		<content>
+			<List class="sapUiResponsiveContentPadding" updateFinished="listContextChanged" >
+				<NotificationListItem title="{/notifItem/FIRST_NAME}" description="{/notifItem/message}" showCloseButton="false"
+					authorName="{/notifItem/VEH_ID}" datetime="{/notifItem/messageTime}"
+					authorPicture="{VEH_ID}"></NotificationListItem>
+			</List>
+		</content>
+	</Page>
+</mvc:View>

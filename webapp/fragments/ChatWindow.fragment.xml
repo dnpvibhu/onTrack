@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:viz="sap.viz.ui5.controls"
+	displayBlock="true" xmlns:c="sap.suite.ui.microchart" xmlns:suite="sap.suite.ui.commons" xmlns:core="sap.ui.core">
+	<Dialog xmlns:html="http://www.w3.org/1999/xhtml" contentWidth="37rem" >
+		<content>
+			<VBox>
+				<Timeline id="idTimeline" xmlns="sap.suite.ui.commons" sortOldestFirst="true" enableDoubleSided="false" content="{/driverChatModel}">
+					<content>
+						<TimelineItem id="idTemplateItem" dateTime="{MessageTime}" userNameClickable="true" userPicture="{Photo}" text="{Message}" userName="{Name}"></TimelineItem>
+					</content>
+				</Timeline>
+				<HBox>
+					<HBox class="sapUiSmallMargin2 ">
+						<VBox class="sapUiSmallMargin2 "><Label text="Message: "/></VBox>
+						<Input class="sapUiMediumMarginBegin sapUiSizeCompact" value="{/driverConvoMessage}"/>
+						<Button class="sapUiLargeMarginBegin sapUiSizeCompact" width="10rem" type="Accept" text="Send" press="onMessageSend"/>
+					</HBox>
+				</HBox>
+			</VBox>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

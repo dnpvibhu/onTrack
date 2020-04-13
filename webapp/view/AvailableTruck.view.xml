@@ -1,0 +1,91 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.wipro.vts.controller.AvailableTruck"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Trucks Master" showHeader="true" showNavButton="true" navButtonPress="navBack" class="trucksPage">
+		<content>
+			<VBox>
+				<Panel width="auto" class="sapUiTinyMargin">
+					<HBox >
+						<GenericTile press="onAllocatedTruck" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Allocated">
+							<TileContent unit="Trucks">
+								<ImageContent src="sap-icon://bus-public-transport"/>
+								<NumericContent value="{/allotedTrucks}" valueColor="Good"/>
+							</TileContent>
+						</GenericTile>
+						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" press="onUnallocatedTrucks" header="Unallocated">
+							<TileContent unit="Trucks">
+								<NumericContent valueColor="Critical" value="{/availableTrucks}"/>
+							</TileContent>
+						</GenericTile>
+						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" press="onScheduledTrucks" header="Scheduled">
+							<TileContent unit="Trucks"></TileContent>
+						</GenericTile>
+					</HBox>
+				</Panel>
+				<Table id="allocatedTruckTable" visible="false" items="{path:'/allotedTrucks2', filters : [ { path : 'AllocationStatus'}] }"
+					class="sapUiResponsiveContentPadding">
+					<columns>
+						<Column width="12em"><Text text="Truck Number"/></Column>
+						<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Truck Capacity"/></Column>
+						<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Carrier"/></Column>
+						<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Vehicle Type"/></Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Right"><Text text="Allocation Status"/></Column>
+					</columns>
+					<items >
+						<ColumnListItem type="Active" press="onAlloatedTruckSelect">
+							<cells>
+								<Text text="{VEH_ID}"/>
+								<Text text="{VEH_MAXVOL}"/>
+								<Text text="{CARRIER}"/>
+								<Text text="{VEH_TYPE}"/>
+								<Text text="{AllocationStatus}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+				<Table id="unAllocatedTruckTable" visible="false" items="{path:'/availableTrucks2', filters : [ { path : 'AllocationStatus'}] }"
+					class="sapUiResponsiveContentPadding">
+					<columns>
+						<Column width="12em"><Text text="Truck Number"/></Column>
+						<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Truck Capacity"/></Column>
+						<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Carrier"/></Column>
+						<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Vehicle Type"/></Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Right"><Text text="Allocation Status"/></Column>
+					</columns>
+					<items >
+						<ColumnListItem type="Active" press="onUnAlloatedTruckSelect">
+							<cells>
+								<Text text="{VEH_ID}"/>
+								<Text text="{VEH_MAXVOL}"/>
+								<Text text="{CARRIER}"/>
+								<Text text="{VEH_TYPE}"/>
+								<Text text="{AllocationStatus}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+				<Table id="scheduledTruckTable" visible="false" items="{path:'/allotmentDetails'}" class="sapUiResponsiveContentPadding">
+					<columns>
+						<Column width="12em"><Text text="Truck No"/></Column>
+						<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Order No"/></Column>
+						<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Shipping To"/></Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Right"><Text text="Destination"/></Column>
+						<Column hAlign="Right"><Text text="Quantity"/></Column>
+						<Column hAlign="Right"><Text text="Product"/></Column>
+					</columns>
+					<items >
+						<ColumnListItem type="Active" press="onscheduledTruckSelect">
+							<cells>
+								<Text text="{truckDetails/VEH_ID}"/>
+								<Text text="{destinationAddress/SHNUMBER}"/>
+								<Text text="{destinationAddress/NAME1}"/>
+								<Text text="{destinationAddress/CITY1}"/>
+								<Text text="{destinationAddress/LFIMG} Liters"/>
+								<Text text="{destinationAddress/MATNR}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

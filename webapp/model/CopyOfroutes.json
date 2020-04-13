@@ -1,0 +1,137 @@
+{
+	"Trucks": [{
+		"truckNo": "32423",
+		"truckCap": "8732 gallons",
+		"fuelType": "Petrol",
+		"truckModel": "City Express",
+		"AllocationStatus": "Available"
+	}, {
+		"truckNo": "47234",
+		"truckCap": "7843 gallons",
+		"fuelType": "Petrol",
+		"truckModel": "City Express",
+		"AllocationStatus": "Available"
+	}, {
+		"truckNo": "56676",
+		"truckCap": "9845 gallons",
+		"fuelType": "Petrol",
+		"truckModel": "City Express",
+		"AllocationStatus": "Available"
+	}, {
+		"truckNo": "24236",
+		"truckCap": "2000 gallons",
+		"fuelType": "Petrol",
+		"truckModel": "City Express",
+		"AllocationStatus": "Available"
+	}, {
+		"truckNo": "34533",
+		"truckCap": "6000 gallons",
+		"fuelType": "Petrol",
+		"truckModel": "City Express",
+		"AllocationStatus": "Available"
+	}, {
+		"truckNo": "24236",
+		"truckCap": "2000 gallons",
+		"fuelType": "Petrol",
+		"truckModel": "City Express",
+		"AllocationStatus": "Available"
+	}, {
+		"truckNo": "24453",
+		"truckCap": "2400 gallons",
+		"fuelType": "Diesel",
+		"truckModel": "E-450",
+		"AllocationStatus": "Available"
+	}, {
+		"truckNo": "23445",
+		"truckCap": "3244 gallons",
+		"fuelType": "Petrol",
+		"truckModel": "F-550",
+		"AllocationStatus": "Available"
+	}, {
+		"truckNo": "4535",
+		"truckCap": "5686 gallons",
+		"fuelType": "Diesel",
+		"truckModel": "Sprinter",
+		"AllocationStatus": "Available"
+	}, {
+		"truckNo": "45345",
+		"truckCap": "4623 gallons",
+		"fuelType": "Diesel",
+		"truckModel": "City Express",
+		"AllocationStatus": "Available"
+	}, {
+		"truckNo": "46879",
+		"truckCap": "13547 gallons",
+		"fuelType": "Petrol",
+		"truckModel": "Sprinter",
+		"AllocationStatus": "Available"
+	}, {
+		"truckNo": "46782",
+		"truckCap": "2181 gallons",
+		"fuelType": "Petrol",
+		"truckModel": "F-550",
+		"AllocationStatus": "Available"
+	}],
+
+	"Drivers": [{
+		"driverEmail": "arun@sad.com",
+		"driverTel": "123871263",
+		"driverName": "Arun Ruddy",
+		"driverImage": "./img/d1.jpeg",
+		"allocationStatus": "Available"
+	}, {
+		"driverEmail": "emma@sad.com",
+		"driverTel": "123871263",
+		"driverName": "Emma White",
+		"driverImage": "./img/emma.png",
+		"allocationStatus": "Available"
+	}, {
+		"driverEmail": "willy@delivery.com",
+		"driverTel": "123871263",
+		"driverName": "William Black",
+		"driverImage": ".img/black.jpeg",
+		"allocationStatus": "Available"
+	}, {
+		"driverEmail": "Charles@sad.com",
+		"driverTel": "123871263",
+		"driverName": "Charles Karen",
+		"driverImage": "./img/las.jpg",
+		"allocationStatus": "Available"
+	}, {
+		"driverEmail": "jj@wedeliver.com",
+		"driverTel": "123871263",
+		"driverName": "Jacob Jacob",
+		"driverImage": "./img/cj.jpg",
+		"allocationStatus": "Available"
+	}, {
+		"driverEmail": "noah@sad.com",
+		"driverTel": "123871263",
+		"driverName": "Noah Liam",
+		"driverImage": "./img/cj.jpg",
+		"allocationStatus": "Available"
+	}, {
+		"driverEmail": "danny@sad.com",
+		"driverTel": "123871263",
+		"driverName": "Daniel Thomas",
+		"driverImage": "./img/cj.jpg",
+		"allocationStatus": "Available"
+	}, {
+		"driverEmail": "albedavidrt@sad.com",
+		"driverTel": "123871263",
+		"driverName": "David Ethan",
+		"driverImage": "./img/cj.jpg",
+		"allocationStatus": "Available"
+	}, {
+		"driverName": "Albert Fernandez",
+		"driverImage": "./img/d2.jpeg",
+		"allocationStatus": "Available",
+		"driverEmail": "albert@sad.com",
+		"driverTel": "123871263"
+	}, {
+		"driverEmail": "lenny@sad.com",
+		"driverTel": "123871263",
+		"driverName": "Lenny Liam",
+		"driverImage": "./img/cj.jpg",
+		"allocationStatus": "Available"
+	}]
+}

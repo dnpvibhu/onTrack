@@ -1,0 +1,74 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.wipro.vts.controller.Home"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout">
+	<Page title="Vehicle Monitoring" showHeader="true" showNavButton="true" navButtonPress="onBackPress" >
+		<!--<subHeader>
+			<Bar class="customTitle">
+				<contentLeft>
+					<Button class="sapUiSizeCompact" icon="img/back.png" press="onBackPress" />
+				</contentLeft>
+				<contentMiddle>
+					<Title class="firstTitle" text="Vehicle Tracking System"></Title>
+				</contentMiddle>
+				<contentRight>
+					<IconTabBar upperCase="true" items="{/weather/list}" expandable="false" expanded="false" class="weatherForecast sapUiTinyMarginTop">
+						<items>
+							<IconTabFilter text="{ path:'dt', formatter:'.relativeDate' }" count="{ path:'main/temp', formatter:'.kelvinToCel' }°C"
+								icon="https://openweathermap.org/img/w/{weather/0/icon}.png"/>
+						</items>
+					</IconTabBar>
+				</contentRight>
+			</Bar>
+		</subHeader>-->
+		<content>
+			<l:Grid hSpacing="0" vSpacing="0" defaultSpan="L4 M4 S12">
+				<l:content>
+					<ScrollContainer vertical="true" horizontal="false" class="customScroll">
+						<layoutData>
+							<l:GridData span="L3 M3 S8"/>
+						</layoutData>
+						<SearchField width="100%" search="handleSearch"/>
+						<List items="{path:'/AlloatedOrders'}" updateFinished="listContextChanged" id="ListID">
+							<headerToolbar>
+								<Toolbar>
+									<Title text="Truck List" id="ListHeader"/>
+								</Toolbar>
+							</headerToolbar>
+							<NotificationListItem title="Order #{markerDet/SHNUMBER}" description="Customer Name: {markerDet/NAME1}" showCloseButton="false"
+								press="onListItemPress" authorName="{markerDet/driverDet/FIRST_NAME} {markerDet/driverDet/LAST_NAME}" datetime="Truck {markerDet/truckDet/VEH_ID}"
+								authorPicture="{markerDet/driverDet/driverImage}"></NotificationListItem>
+						</List>
+					</ScrollContainer>
+					<VBox>
+						<layoutData>
+							<l:GridData span="L9 M7 S12"/>
+						</layoutData>
+						<html:div id="map" style="height:calc( 100vh - 3rem );"></html:div>
+						<!--<HBox class="legend">
+							<TileContent id="newDelivery" visible="{view>/KPICollapsed}" footer="Unallocated Orders">
+								<content>
+									<NumericContent value="{/newDelivery}" tooltip="" valueColor="Error" press="onAlertsPress"/>
+								</content>
+							</TileContent>
+							<TileContent id="availableTrucks" visible="{view>/KPICollapsed}" footer="Available Trucks">
+								<content>
+									<NumericContent value="{/availableTrucks}" tooltip="" valueColor="Neutral" press="onNotifications"/>
+								</content>
+							</TileContent>
+							<TileContent visible="{view>/KPICollapsed}" footer="Trucks Rerouted">
+								<content>
+									<NumericContent value="1" tooltip="" valueColor="Critical" press="onWorkOrders"/>
+								</content>
+							</TileContent>
+							<TileContent id="truckShipment" visible="{view>/KPICollapsed}" footer="Trucks on shipment">
+								<content>
+									<NumericContent value="{/trucksShippment}" tooltip="" valueColor="Good" press="onWorkOrders"/>
+								</content>
+							</TileContent>
+							<core:Icon src="sap-icon://navigation-{= ${view>/KPICollapsed}?'left':'right'}-arrow" press="collapseKPIs" class="collapseHandle"/>
+						</HBox>-->
+					</VBox>
+				</l:content>
+			</l:Grid>
+		</content>
+	</Page>
+</mvc:View>

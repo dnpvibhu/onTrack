@@ -1,0 +1,198 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
+	<edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="1.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ReverseLogistics">
+			<EntityType Name="Blockchain">
+				<Key><PropertyRef Name="id"/><PropertyRef Name="timestamp"/></Key><Property Name="id" Type="Edm.String" Nullable="false"/><Property Name="timestamp" Type="Edm.Int64" Nullable="false"/><Property Name="block_json" Type="Edm.String" Nullable="false"/></EntityType>
+			<EntityType Name="Delivery_notes"><Key/><Property Name="order_number" Type="Edm.Int64" Nullable="true"/><Property Name="delivery_remarks" Type="Edm.String" Nullable="true"/><Property Name="delivery_date" Type="Edm.Int64" Nullable="true"/><Property Name="type" Type="Edm.String" Nullable="false"/><Property Name="return_order_number" Type="Edm.Int64" Nullable="true"/><NavigationProperty Name="Orders" FromRole="Delivery_notesSet" ToRole="OrdersSet"
+				Relationship="ReverseLogistics.FK_Delivery_notesSet_OrdersSet"/><NavigationProperty Name="Returns" FromRole="Delivery_notesSet" ToRole="ReturnsSet"
+				Relationship="ReverseLogistics.FK_Delivery_notesSet_ReturnsSet"/></EntityType>
+			<EntityType Name="BPTransactions">
+				<Key><PropertyRef Name="transaction_number"/></Key><Property Name="transaction_number" Type="Edm.Int64" Nullable="false"/><Property Name="transaction_amount" Type="Edm.Int64" Nullable="false"/><Property Name="final_balance" Type="Edm.Int64" Nullable="false"/><Property Name="business_partner_number" Type="Edm.Int64" Nullable="false"/><NavigationProperty Name="Business_partners" FromRole="BPTransactionsSet" ToRole="Business_partnersSet"
+					Relationship="ReverseLogistics.FK_BPTransactionsSet_Business_partnersSet"/></EntityType>
+			<EntityType Name="Business_partners">
+				<Key><PropertyRef Name="business_partner_number"/></Key><Property Name="business_partner_number" Type="Edm.Int64" Nullable="false"/><Property Name="name" Type="Edm.String" Nullable="false"/><Property Name="address" Type="Edm.String" Nullable="false"/><Property Name="tax_number" Type="Edm.String" Nullable="true"/><Property Name="email" Type="Edm.String" Nullable="true"/><Property Name="contact_number" Type="Edm.String" Nullable="true"/><Property Name="company" Type="Edm.String" Nullable="true"/><Property Name="password" Type="Edm.String" Nullable="true"/><Property Name="user_tag" Type="Edm.String" Nullable="true"/><Property Name="wallet_id" Type="Edm.Int64" Nullable="true"/><Property Name="wallet_balance" Type="Edm.Int64" Nullable="true"/><NavigationProperty Name="BPTransactionsSet" FromRole="Business_partnersSet" ToRole="BPTransactionsSet"
+					Relationship="ReverseLogistics.FK_BPTransactionsSet_Business_partnersSet"/><NavigationProperty Name="OrdersSet" FromRole="Business_partnersSet" ToRole="OrdersSet"
+					Relationship="ReverseLogistics.FK_OrdersSet_Business_partnersSet"/><NavigationProperty Name="ReturnsSet" FromRole="Business_partnersSet" ToRole="ReturnsSet"
+					Relationship="ReverseLogistics.FK_ReturnsSet_Business_partnersSet"/></EntityType>
+			<EntityType Name="categories"><Key/><Property Name="category" Type="Edm.String" Nullable="true"/><Property Name="items" Type="Edm.String" Nullable="true"/></EntityType>
+			<EntityType Name="Article_master">
+				<Key><PropertyRef Name="article_number"/></Key><Property Name="article_number" Type="Edm.String" Nullable="false"/><Property Name="article_description" Type="Edm.String" Nullable="true"/><Property Name="producer_number" Type="Edm.String" Nullable="false"/><Property Name="price" Type="Edm.Single" Nullable="false"/><Property Name="category" Type="Edm.String" Nullable="true"/><NavigationProperty Name="CharacteristicsSet" FromRole="Article_masterSet" ToRole="CharacteristicsSet"
+					Relationship="ReverseLogistics.FK_CharacteristicsSet_Article_masterSet"/><NavigationProperty Name="Cart_itemsSet" FromRole="Article_masterSet" ToRole="Cart_itemsSet"
+					Relationship="ReverseLogistics.FK_Cart_itemsSet_Article_masterSet"/><NavigationProperty Name="Refurbished_stocksSet" FromRole="Article_masterSet" ToRole="Refurbished_stocksSet"
+					Relationship="ReverseLogistics.FK_Refurbished_stocksSet_Article_masterSet"/><NavigationProperty Name="StockTransferOrdersSet" FromRole="Article_masterSet" ToRole="StockTransferOrdersSet"
+					Relationship="ReverseLogistics.FK_StockTransferOrdersSet_Article_masterSet"/></EntityType>
+			<EntityType Name="Stock">
+				<Key><PropertyRef Name="WPIN"/></Key><Property Name="WPIN" Type="Edm.String" Nullable="false"/><Property Name="style_code" Type="Edm.Int64" Nullable="false"/><Property Name="manufacture_date" Type="Edm.Int64" Nullable="false"/><Property Name="status" Type="Edm.String" Nullable="false"/><NavigationProperty Name="Refurbished_stocksSet" FromRole="StockSet" ToRole="Refurbished_stocksSet"
+					Relationship="ReverseLogistics.FK_Refurbished_stocksSet_StockSet"/><NavigationProperty Name="Order_productsSet" FromRole="StockSet" ToRole="Order_productsSet"
+					Relationship="ReverseLogistics.FK_Order_productsSet_StockSet"/><NavigationProperty Name="Characteristics" FromRole="StockSet" ToRole="CharacteristicsSet"
+					Relationship="ReverseLogistics.FK_StockSet_CharacteristicsSet"/></EntityType>
+			<EntityType Name="Characteristics">
+				<Key><PropertyRef Name="style_code"/></Key><Property Name="style_code" Type="Edm.Double" Nullable="false"/><Property Name="article_number" Type="Edm.String" Nullable="false"/><Property Name="size" Type="Edm.Double" Nullable="false"/><Property Name="color" Type="Edm.String" Nullable="false"/><Property Name="image_reference" Type="Edm.String" Nullable="false"/><Property Name="theme" Type="Edm.String" Nullable="false"/><Property Name="made_in" Type="Edm.String" Nullable="false"/><Property Name="stock" Type="Edm.Int64" Nullable="false"/><Property Name="life_style" Type="Edm.String" Nullable="false"/><Property Name="segment" Type="Edm.String" Nullable="false"/><Property Name="brand" Type="Edm.String" Nullable="false"/><NavigationProperty Name="Article_master" FromRole="CharacteristicsSet" ToRole="Article_masterSet"
+					Relationship="ReverseLogistics.FK_CharacteristicsSet_Article_masterSet"/><NavigationProperty Name="StockSet" FromRole="CharacteristicsSet" ToRole="StockSet"
+					Relationship="ReverseLogistics.FK_StockSet_CharacteristicsSet"/><NavigationProperty Name="Cart_itemsSet" FromRole="CharacteristicsSet" ToRole="Cart_itemsSet"
+					Relationship="ReverseLogistics.FK_Cart_itemsSet_CharacteristicsSet"/><NavigationProperty Name="Refurbished_stocksSet" FromRole="CharacteristicsSet" ToRole="Refurbished_stocksSet"
+					Relationship="ReverseLogistics.FK_Refurbished_stocksSet_CharacteristicsSet"/></EntityType>
+			<EntityType Name="ArticleList"><Key/><Property Name="article_number" Type="Edm.String" Nullable="true"/><Property Name="article_description" Type="Edm.String" Nullable="true"/><Property Name="producer_number" Type="Edm.String" Nullable="true"/><Property Name="price" Type="Edm.Single" Nullable="true"/><Property Name="category" Type="Edm.String" Nullable="true"/><Property Name="style_code" Type="Edm.Double" Nullable="true"/><Property Name="size" Type="Edm.Double" Nullable="true"/><Property Name="color" Type="Edm.String" Nullable="true"/><Property Name="image_reference" Type="Edm.String" Nullable="true"/><Property Name="theme" Type="Edm.String" Nullable="true"/><Property Name="made_in" Type="Edm.String" Nullable="true"/><Property Name="stock" Type="Edm.Int64" Nullable="true"/><Property Name="life_style" Type="Edm.String" Nullable="true"/><Property Name="segment" Type="Edm.String" Nullable="true"/><Property Name="brand" Type="Edm.String" Nullable="true"/></EntityType>
+			<EntityType Name="Order_products_display"><Key/><Property Name="order_product_number" Type="Edm.Int64" Nullable="true"/><Property Name="WPIN" Type="Edm.String" Nullable="true"/><Property Name="order_number" Type="Edm.Int64" Nullable="true"/><Property Name="delivery_status" Type="Edm.String" Nullable="true"/><Property Name="sap_order" Type="Edm.Int64" Nullable="true"/><Property Name="sap_delivery" Type="Edm.Int64" Nullable="true"/><Property Name="sap_invoice" Type="Edm.Int64" Nullable="true"/><Property Name="style_code" Type="Edm.Int64" Nullable="true"/><Property Name="manufacture_date" Type="Edm.Int64" Nullable="true"/><Property Name="status" Type="Edm.String" Nullable="true"/><Property Name="article_number" Type="Edm.String" Nullable="true"/><Property Name="size" Type="Edm.Double" Nullable="true"/><Property Name="color" Type="Edm.String" Nullable="true"/><Property Name="image_reference" Type="Edm.String" Nullable="true"/><Property Name="theme" Type="Edm.String" Nullable="true"/><Property Name="made_in" Type="Edm.String" Nullable="true"/><Property Name="stock" Type="Edm.Int64" Nullable="true"/><Property Name="life_style" Type="Edm.String" Nullable="true"/><Property Name="segment" Type="Edm.String" Nullable="true"/><Property Name="brand" Type="Edm.String" Nullable="true"/><Property Name="article_description" Type="Edm.String" Nullable="true"/><Property Name="producer_number" Type="Edm.String" Nullable="true"/><Property Name="price" Type="Edm.Single" Nullable="true"/><Property Name="category" Type="Edm.String" Nullable="true"/></EntityType>
+			<EntityType Name="Cart_items">
+				<Key><PropertyRef Name="cart_item_number"/></Key><Property Name="cart_item_number" Type="Edm.Int64" Nullable="false"/><Property Name="business_partner_number" Type="Edm.Int64" Nullable="false"/><Property Name="article_number" Type="Edm.String" Nullable="false"/><Property Name="quantity" Type="Edm.Int64" Nullable="false"/><Property Name="style_code" Type="Edm.Double" Nullable="false"/><NavigationProperty Name="Article_master" FromRole="Cart_itemsSet" ToRole="Article_masterSet"
+					Relationship="ReverseLogistics.FK_Cart_itemsSet_Article_masterSet"/><NavigationProperty Name="Characteristics" FromRole="Cart_itemsSet" ToRole="CharacteristicsSet"
+					Relationship="ReverseLogistics.FK_Cart_itemsSet_CharacteristicsSet"/></EntityType>
+			<EntityType Name="CartDetails"><Key/><Property Name="cart_item_number" Type="Edm.Int64" Nullable="true"/><Property Name="business_partner_number" Type="Edm.Int64" Nullable="true"/><Property Name="article_number" Type="Edm.String" Nullable="true"/><Property Name="quantity" Type="Edm.Int64" Nullable="true"/><Property Name="style_code" Type="Edm.Double" Nullable="true"/><Property Name="article_description" Type="Edm.String" Nullable="true"/><Property Name="producer_number" Type="Edm.String" Nullable="true"/><Property Name="price" Type="Edm.Single" Nullable="true"/><Property Name="category" Type="Edm.String" Nullable="true"/><Property Name="size" Type="Edm.Double" Nullable="true"/><Property Name="color" Type="Edm.String" Nullable="true"/><Property Name="image_reference" Type="Edm.String" Nullable="true"/><Property Name="theme" Type="Edm.String" Nullable="true"/><Property Name="made_in" Type="Edm.String" Nullable="true"/><Property Name="stock" Type="Edm.Int64" Nullable="true"/><Property Name="life_style" Type="Edm.String" Nullable="true"/><Property Name="segment" Type="Edm.String" Nullable="true"/><Property Name="brand" Type="Edm.String" Nullable="true"/></EntityType>
+			<EntityType Name="StockDetails"><Key/><Property Name="WPIN" Type="Edm.String" Nullable="true"/><Property Name="style_code" Type="Edm.Int64" Nullable="true"/><Property Name="manufacture_date" Type="Edm.Int64" Nullable="true"/><Property Name="status" Type="Edm.String" Nullable="true"/><Property Name="article_number" Type="Edm.String" Nullable="true"/><Property Name="size" Type="Edm.Double" Nullable="true"/><Property Name="color" Type="Edm.String" Nullable="true"/><Property Name="image_reference" Type="Edm.String" Nullable="true"/><Property Name="theme" Type="Edm.String" Nullable="true"/><Property Name="made_in" Type="Edm.String" Nullable="true"/><Property Name="stock" Type="Edm.Int64" Nullable="true"/><Property Name="life_style" Type="Edm.String" Nullable="true"/><Property Name="segment" Type="Edm.String" Nullable="true"/><Property Name="brand" Type="Edm.String" Nullable="true"/><Property Name="article_description" Type="Edm.String" Nullable="true"/><Property Name="producer_number" Type="Edm.String" Nullable="true"/><Property Name="price" Type="Edm.Single" Nullable="true"/><Property Name="category" Type="Edm.String" Nullable="true"/></EntityType>
+			<EntityType Name="Refurbished_stocks">
+				<Key><PropertyRef Name="refurbished_number"/></Key><Property Name="refurbished_number" Type="Edm.Int64" Nullable="false"/><Property Name="article_number" Type="Edm.String" Nullable="false"/><Property Name="style_code" Type="Edm.Double" Nullable="false"/><Property Name="WPIN" Type="Edm.String" Nullable="false"/><Property Name="revised_price" Type="Edm.Single" Nullable="false"/><NavigationProperty Name="Article_master" FromRole="Refurbished_stocksSet" ToRole="Article_masterSet"
+					Relationship="ReverseLogistics.FK_Refurbished_stocksSet_Article_masterSet"/><NavigationProperty Name="Stock" FromRole="Refurbished_stocksSet" ToRole="StockSet"
+					Relationship="ReverseLogistics.FK_Refurbished_stocksSet_StockSet"/><NavigationProperty Name="Characteristics" FromRole="Refurbished_stocksSet" ToRole="CharacteristicsSet"
+					Relationship="ReverseLogistics.FK_Refurbished_stocksSet_CharacteristicsSet"/></EntityType>
+			<EntityType Name="Notes_display"><Key/><Property Name="order_number" Type="Edm.Int64" Nullable="true"/><Property Name="delivery_remarks" Type="Edm.String" Nullable="true"/><Property Name="delivery_date" Type="Edm.Int64" Nullable="true"/><Property Name="type" Type="Edm.String" Nullable="true"/><Property Name="return_order_number" Type="Edm.Int64" Nullable="true"/><Property Name="order_product_number" Type="Edm.Int64" Nullable="true"/><Property Name="WPIN" Type="Edm.String" Nullable="true"/><Property Name="delivery_status" Type="Edm.String" Nullable="true"/><Property Name="sap_order" Type="Edm.Int64" Nullable="true"/><Property Name="sap_delivery" Type="Edm.Int64" Nullable="true"/><Property Name="sap_invoice" Type="Edm.Int64" Nullable="true"/><Property Name="style_code" Type="Edm.Int64" Nullable="true"/><Property Name="manufacture_date" Type="Edm.Int64" Nullable="true"/><Property Name="status" Type="Edm.String" Nullable="true"/><Property Name="article_number" Type="Edm.String" Nullable="true"/><Property Name="size" Type="Edm.Double" Nullable="true"/><Property Name="color" Type="Edm.String" Nullable="true"/><Property Name="image_reference" Type="Edm.String" Nullable="true"/><Property Name="theme" Type="Edm.String" Nullable="true"/><Property Name="made_in" Type="Edm.String" Nullable="true"/><Property Name="stock" Type="Edm.Int64" Nullable="true"/><Property Name="life_style" Type="Edm.String" Nullable="true"/><Property Name="segment" Type="Edm.String" Nullable="true"/><Property Name="brand" Type="Edm.String" Nullable="true"/><Property Name="article_description" Type="Edm.String" Nullable="true"/><Property Name="producer_number" Type="Edm.String" Nullable="true"/><Property Name="price" Type="Edm.Single" Nullable="true"/><Property Name="category" Type="Edm.String" Nullable="true"/></EntityType>
+			<EntityType Name="StockTransferOrders">
+				<Key><PropertyRef Name="sto_number"/></Key><Property Name="sto_number" Type="Edm.Int64" Nullable="false"/><Property Name="po_number" Type="Edm.String" Nullable="false"/><Property Name="WPIN" Type="Edm.String" Nullable="false"/><Property Name="article_number" Type="Edm.String" Nullable="false"/><NavigationProperty Name="Article_master" FromRole="StockTransferOrdersSet" ToRole="Article_masterSet"
+					Relationship="ReverseLogistics.FK_StockTransferOrdersSet_Article_masterSet"/></EntityType>
+			<EntityType Name="EMailsTrack">
+				<Key><PropertyRef Name="id"/></Key><Property Name="from" Type="Edm.String" Nullable="false"/><Property Name="to" Type="Edm.String" Nullable="false"/><Property Name="msg" Type="Edm.String" Nullable="true"/><Property Name="id" Type="Edm.Int64" Nullable="false"/></EntityType>
+			<EntityType Name="ReturnReasons">
+				<Key><PropertyRef Name="reason_code"/></Key><Property Name="reason_code" Type="Edm.Int64" Nullable="false"/><Property Name="reason" Type="Edm.String" Nullable="false"/></EntityType>
+			<EntityType Name="Orders">
+				<Key><PropertyRef Name="order_number"/></Key><Property Name="order_number" Type="Edm.Int64" Nullable="false"/><Property Name="order_date" Type="Edm.Int64" Nullable="false"/><Property Name="sold_to" Type="Edm.Int64" Nullable="false"/><Property Name="billed_to" Type="Edm.Int64" Nullable="false"/><Property Name="shipped_to" Type="Edm.Int64" Nullable="false"/><Property Name="shipped_by" Type="Edm.Int64" Nullable="false"/><Property Name="order_amount" Type="Edm.Single" Nullable="true"/><Property Name="taxes" Type="Edm.Single" Nullable="true"/><Property Name="discounts" Type="Edm.Single" Nullable="true"/><Property Name="sap_order" Type="Edm.Int64" Nullable="true"/><Property Name="sap_delivery" Type="Edm.Int64" Nullable="true"/><Property Name="sap_invoice" Type="Edm.Int64" Nullable="true"/><NavigationProperty Name="Business_partners" FromRole="OrdersSet" ToRole="Business_partnersSet"
+					Relationship="ReverseLogistics.FK_OrdersSet_Business_partnersSet"/><NavigationProperty Name="Delivery_notesSet" FromRole="OrdersSet" ToRole="Delivery_notesSet"
+					Relationship="ReverseLogistics.FK_Delivery_notesSet_OrdersSet"/><NavigationProperty Name="Order_productsSet" FromRole="OrdersSet" ToRole="Order_productsSet"
+					Relationship="ReverseLogistics.FK_Order_productsSet_OrdersSet"/><NavigationProperty Name="ReturnsSet" FromRole="OrdersSet" ToRole="ReturnsSet" Relationship="ReverseLogistics.FK_ReturnsSet_OrdersSet"/></EntityType>
+			<EntityType Name="RunnerStock"><Key/><Property Name="order_product_number" Type="Edm.Int64" Nullable="true"/><Property Name="WPIN" Type="Edm.String" Nullable="true"/><Property Name="order_number" Type="Edm.Int64" Nullable="true"/><Property Name="delivery_status" Type="Edm.String" Nullable="true"/><Property Name="sap_order" Type="Edm.Int64" Nullable="true"/><Property Name="sap_delivery" Type="Edm.Int64" Nullable="true"/><Property Name="sap_invoice" Type="Edm.Int64" Nullable="true"/><Property Name="style_code" Type="Edm.Int64" Nullable="true"/><Property Name="manufacture_date" Type="Edm.Int64" Nullable="true"/><Property Name="status" Type="Edm.String" Nullable="true"/><Property Name="article_number" Type="Edm.String" Nullable="true"/><Property Name="size" Type="Edm.Double" Nullable="true"/><Property Name="color" Type="Edm.String" Nullable="true"/><Property Name="image_reference" Type="Edm.String" Nullable="true"/><Property Name="theme" Type="Edm.String" Nullable="true"/><Property Name="made_in" Type="Edm.String" Nullable="true"/><Property Name="stock" Type="Edm.Int64" Nullable="true"/><Property Name="life_style" Type="Edm.String" Nullable="true"/><Property Name="segment" Type="Edm.String" Nullable="true"/><Property Name="brand" Type="Edm.String" Nullable="true"/><Property Name="article_description" Type="Edm.String" Nullable="true"/><Property Name="producer_number" Type="Edm.String" Nullable="true"/><Property Name="price" Type="Edm.Single" Nullable="true"/><Property Name="category" Type="Edm.String" Nullable="true"/></EntityType>
+			<EntityType Name="ReturnItems"><Key/><Property Name="return_order_number" Type="Edm.Int64" Nullable="false"/><Property Name="WPIN" Type="Edm.String" Nullable="true"/><Property Name="reason_code" Type="Edm.Int64" Nullable="true"/><NavigationProperty Name="Returns" FromRole="ReturnItemsSet" ToRole="ReturnsSet"
+				Relationship="ReverseLogistics.FK_ReturnItemsSet_ReturnsSet"/></EntityType>
+			<EntityType Name="Order_products">
+				<Key><PropertyRef Name="order_product_number"/></Key><Property Name="order_product_number" Type="Edm.Int64" Nullable="false"/><Property Name="WPIN" Type="Edm.String" Nullable="false"/><Property Name="order_number" Type="Edm.Int64" Nullable="false"/><Property Name="delivery_status" Type="Edm.String" Nullable="true"/><Property Name="sap_order" Type="Edm.Int64" Nullable="true"/><Property Name="sap_delivery" Type="Edm.Int64" Nullable="true"/><Property Name="sap_invoice" Type="Edm.Int64" Nullable="true"/><NavigationProperty Name="Stock" FromRole="Order_productsSet" ToRole="StockSet"
+					Relationship="ReverseLogistics.FK_Order_productsSet_StockSet"/><NavigationProperty Name="Orders" FromRole="Order_productsSet" ToRole="OrdersSet"
+					Relationship="ReverseLogistics.FK_Order_productsSet_OrdersSet"/></EntityType>
+			<EntityType Name="Returns">
+				<Key><PropertyRef Name="return_order_number"/></Key><Property Name="return_order_number" Type="Edm.Int64" Nullable="false"/><Property Name="order_number" Type="Edm.Int64" Nullable="false"/><Property Name="article_number" Type="Edm.String" Nullable="false"/><Property Name="return_date" Type="Edm.Int64" Nullable="false"/><Property Name="reason_code" Type="Edm.Int64" Nullable="false"/><Property Name="returned_to" Type="Edm.Int64" Nullable="false"/><Property Name="shipped_by" Type="Edm.Int64" Nullable="true"/><Property Name="return_status" Type="Edm.String" Nullable="true"/><Property Name="sap_order" Type="Edm.Int64" Nullable="true"/><Property Name="sap_delivery" Type="Edm.Int64" Nullable="true"/><Property Name="sap_invoice" Type="Edm.Int64" Nullable="true"/><NavigationProperty Name="Business_partners" FromRole="ReturnsSet" ToRole="Business_partnersSet"
+					Relationship="ReverseLogistics.FK_ReturnsSet_Business_partnersSet"/><NavigationProperty Name="Orders" FromRole="ReturnsSet" ToRole="OrdersSet" Relationship="ReverseLogistics.FK_ReturnsSet_OrdersSet"/><NavigationProperty Name="Delivery_notesSet" FromRole="ReturnsSet" ToRole="Delivery_notesSet"
+					Relationship="ReverseLogistics.FK_Delivery_notesSet_ReturnsSet"/><NavigationProperty Name="ReturnItemsSet" FromRole="ReturnsSet" ToRole="ReturnItemsSet"
+					Relationship="ReverseLogistics.FK_ReturnItemsSet_ReturnsSet"/></EntityType>
+			<Association Name="FK_BPTransactionsSet_Business_partnersSet"><End Role="Business_partnersSet" Type="ReverseLogistics.Business_partners" Multiplicity="1"/><End Role="BPTransactionsSet" Type="ReverseLogistics.BPTransactions" Multiplicity="*"/>
+				<ReferentialConstraint>
+					<Principal Role="Business_partnersSet"><PropertyRef Name="business_partner_number"/></Principal>
+					<Dependent Role="BPTransactionsSet"><PropertyRef Name="business_partner_number"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FK_OrdersSet_Business_partnersSet"><End Role="Business_partnersSet" Type="ReverseLogistics.Business_partners" Multiplicity="1"/><End Role="OrdersSet" Type="ReverseLogistics.Orders" Multiplicity="*"/>
+				<ReferentialConstraint>
+					<Principal Role="Business_partnersSet"><PropertyRef Name="business_partner_number"/></Principal>
+					<Dependent Role="OrdersSet"><PropertyRef Name="shipped_by"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FK_ReturnsSet_Business_partnersSet"><End Role="Business_partnersSet" Type="ReverseLogistics.Business_partners" Multiplicity="1"/><End Role="ReturnsSet" Type="ReverseLogistics.Returns" Multiplicity="*"/>
+				<ReferentialConstraint>
+					<Principal Role="Business_partnersSet"><PropertyRef Name="business_partner_number"/></Principal>
+					<Dependent Role="ReturnsSet"><PropertyRef Name="returned_to"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FK_CharacteristicsSet_Article_masterSet"><End Role="Article_masterSet" Type="ReverseLogistics.Article_master" Multiplicity="1"/><End Role="CharacteristicsSet" Type="ReverseLogistics.Characteristics" Multiplicity="*"/>
+				<ReferentialConstraint>
+					<Principal Role="Article_masterSet"><PropertyRef Name="article_number"/></Principal>
+					<Dependent Role="CharacteristicsSet"><PropertyRef Name="article_number"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FK_Cart_itemsSet_Article_masterSet"><End Role="Article_masterSet" Type="ReverseLogistics.Article_master" Multiplicity="1"/><End Role="Cart_itemsSet" Type="ReverseLogistics.Cart_items" Multiplicity="*"/>
+				<ReferentialConstraint>
+					<Principal Role="Article_masterSet"><PropertyRef Name="article_number"/></Principal>
+					<Dependent Role="Cart_itemsSet"><PropertyRef Name="article_number"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FK_Refurbished_stocksSet_Article_masterSet"><End Role="Article_masterSet" Type="ReverseLogistics.Article_master" Multiplicity="1"/><End Role="Refurbished_stocksSet" Type="ReverseLogistics.Refurbished_stocks" Multiplicity="*"/>
+				<ReferentialConstraint>
+					<Principal Role="Article_masterSet"><PropertyRef Name="article_number"/></Principal>
+					<Dependent Role="Refurbished_stocksSet"><PropertyRef Name="article_number"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FK_StockTransferOrdersSet_Article_masterSet"><End Role="Article_masterSet" Type="ReverseLogistics.Article_master" Multiplicity="1"/><End Role="StockTransferOrdersSet" Type="ReverseLogistics.StockTransferOrders" Multiplicity="*"/>
+				<ReferentialConstraint>
+					<Principal Role="Article_masterSet"><PropertyRef Name="article_number"/></Principal>
+					<Dependent Role="StockTransferOrdersSet"><PropertyRef Name="article_number"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FK_Refurbished_stocksSet_StockSet"><End Role="StockSet" Type="ReverseLogistics.Stock" Multiplicity="1"/><End Role="Refurbished_stocksSet" Type="ReverseLogistics.Refurbished_stocks" Multiplicity="*"/>
+				<ReferentialConstraint>
+					<Principal Role="StockSet"><PropertyRef Name="WPIN"/></Principal>
+					<Dependent Role="Refurbished_stocksSet"><PropertyRef Name="WPIN"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FK_Order_productsSet_StockSet"><End Role="StockSet" Type="ReverseLogistics.Stock" Multiplicity="1"/><End Role="Order_productsSet" Type="ReverseLogistics.Order_products" Multiplicity="*"/>
+				<ReferentialConstraint>
+					<Principal Role="StockSet"><PropertyRef Name="WPIN"/></Principal>
+					<Dependent Role="Order_productsSet"><PropertyRef Name="WPIN"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FK_StockSet_CharacteristicsSet"><End Role="CharacteristicsSet" Type="ReverseLogistics.Characteristics" Multiplicity="1"/><End Role="StockSet" Type="ReverseLogistics.Stock" Multiplicity="*"/>
+				<ReferentialConstraint>
+					<Principal Role="CharacteristicsSet"><PropertyRef Name="style_code"/></Principal>
+					<Dependent Role="StockSet"><PropertyRef Name="style_code"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FK_Cart_itemsSet_CharacteristicsSet"><End Role="CharacteristicsSet" Type="ReverseLogistics.Characteristics" Multiplicity="1"/><End Role="Cart_itemsSet" Type="ReverseLogistics.Cart_items" Multiplicity="*"/>
+				<ReferentialConstraint>
+					<Principal Role="CharacteristicsSet"><PropertyRef Name="style_code"/></Principal>
+					<Dependent Role="Cart_itemsSet"><PropertyRef Name="style_code"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FK_Refurbished_stocksSet_CharacteristicsSet"><End Role="CharacteristicsSet" Type="ReverseLogistics.Characteristics" Multiplicity="1"/><End Role="Refurbished_stocksSet" Type="ReverseLogistics.Refurbished_stocks" Multiplicity="*"/>
+				<ReferentialConstraint>
+					<Principal Role="CharacteristicsSet"><PropertyRef Name="style_code"/></Principal>
+					<Dependent Role="Refurbished_stocksSet"><PropertyRef Name="style_code"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FK_Delivery_notesSet_OrdersSet"><End Role="OrdersSet" Type="ReverseLogistics.Orders" Multiplicity="1"/><End Role="Delivery_notesSet" Type="ReverseLogistics.Delivery_notes" Multiplicity="*"/>
+				<ReferentialConstraint>
+					<Principal Role="OrdersSet"><PropertyRef Name="order_number"/></Principal>
+					<Dependent Role="Delivery_notesSet"><PropertyRef Name="order_number"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FK_Order_productsSet_OrdersSet"><End Role="OrdersSet" Type="ReverseLogistics.Orders" Multiplicity="1"/><End Role="Order_productsSet" Type="ReverseLogistics.Order_products" Multiplicity="*"/>
+				<ReferentialConstraint>
+					<Principal Role="OrdersSet"><PropertyRef Name="order_number"/></Principal>
+					<Dependent Role="Order_productsSet"><PropertyRef Name="order_number"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FK_ReturnsSet_OrdersSet"><End Role="OrdersSet" Type="ReverseLogistics.Orders" Multiplicity="1"/><End Role="ReturnsSet" Type="ReverseLogistics.Returns" Multiplicity="*"/>
+				<ReferentialConstraint>
+					<Principal Role="OrdersSet"><PropertyRef Name="order_number"/></Principal>
+					<Dependent Role="ReturnsSet"><PropertyRef Name="order_number"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FK_Delivery_notesSet_ReturnsSet"><End Role="ReturnsSet" Type="ReverseLogistics.Returns" Multiplicity="1"/><End Role="Delivery_notesSet" Type="ReverseLogistics.Delivery_notes" Multiplicity="*"/>
+				<ReferentialConstraint>
+					<Principal Role="ReturnsSet"><PropertyRef Name="return_order_number"/></Principal>
+					<Dependent Role="Delivery_notesSet"><PropertyRef Name="return_order_number"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FK_ReturnItemsSet_ReturnsSet"><End Role="ReturnsSet" Type="ReverseLogistics.Returns" Multiplicity="1"/><End Role="ReturnItemsSet" Type="ReverseLogistics.ReturnItems" Multiplicity="*"/>
+				<ReferentialConstraint>
+					<Principal Role="ReturnsSet"><PropertyRef Name="return_order_number"/></Principal>
+					<Dependent Role="ReturnItemsSet"><PropertyRef Name="return_order_number"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ReverseLogistics_entities" m:IsDefaultEntityContainer="true"><EntitySet Name="BlockchainSet" EntityType="ReverseLogistics.Blockchain"/><EntitySet Name="Delivery_notesSet" EntityType="ReverseLogistics.Delivery_notes"/><EntitySet Name="BPTransactionsSet" EntityType="ReverseLogistics.BPTransactions"/><EntitySet Name="Business_partnersSet" EntityType="ReverseLogistics.Business_partners"/><EntitySet Name="categoriesSet" EntityType="ReverseLogistics.categories"/><EntitySet Name="Article_masterSet" EntityType="ReverseLogistics.Article_master"/><EntitySet Name="StockSet" EntityType="ReverseLogistics.Stock"/><EntitySet Name="CharacteristicsSet" EntityType="ReverseLogistics.Characteristics"/><EntitySet Name="ArticleListSet" EntityType="ReverseLogistics.ArticleList"/><EntitySet Name="Order_products_displaySet" EntityType="ReverseLogistics.Order_products_display"/><EntitySet Name="Cart_itemsSet" EntityType="ReverseLogistics.Cart_items"/><EntitySet Name="CartDetailsSet" EntityType="ReverseLogistics.CartDetails"/><EntitySet Name="StockDetailsSet" EntityType="ReverseLogistics.StockDetails"/><EntitySet Name="Refurbished_stocksSet" EntityType="ReverseLogistics.Refurbished_stocks"/><EntitySet Name="Notes_displaySet" EntityType="ReverseLogistics.Notes_display"/><EntitySet Name="StockTransferOrdersSet" EntityType="ReverseLogistics.StockTransferOrders"/><EntitySet Name="EMailsTrackSet" EntityType="ReverseLogistics.EMailsTrack"/><EntitySet Name="ReturnReasonsSet" EntityType="ReverseLogistics.ReturnReasons"/><EntitySet Name="OrdersSet" EntityType="ReverseLogistics.Orders"/><EntitySet Name="RunnerStockSet" EntityType="ReverseLogistics.RunnerStock"/><EntitySet Name="ReturnItemsSet" EntityType="ReverseLogistics.ReturnItems"/><EntitySet Name="Order_productsSet" EntityType="ReverseLogistics.Order_products"/><EntitySet Name="ReturnsSet" EntityType="ReverseLogistics.Returns"/>
+				<AssociationSet Name="FK_BPTransactionsSet_Business_partnersSet" Association="ReverseLogistics.FK_BPTransactionsSet_Business_partnersSet"><End Role="BPTransactionsSet" EntitySet="BPTransactionsSet"/><End Role="Business_partnersSet" EntitySet="Business_partnersSet"/></AssociationSet>
+				<AssociationSet Name="FK_OrdersSet_Business_partnersSet" Association="ReverseLogistics.FK_OrdersSet_Business_partnersSet"><End Role="OrdersSet" EntitySet="OrdersSet"/><End Role="Business_partnersSet" EntitySet="Business_partnersSet"/></AssociationSet>
+				<AssociationSet Name="FK_ReturnsSet_Business_partnersSet" Association="ReverseLogistics.FK_ReturnsSet_Business_partnersSet"><End Role="ReturnsSet" EntitySet="ReturnsSet"/><End Role="Business_partnersSet" EntitySet="Business_partnersSet"/></AssociationSet>
+				<AssociationSet Name="FK_CharacteristicsSet_Article_masterSet" Association="ReverseLogistics.FK_CharacteristicsSet_Article_masterSet"><End Role="CharacteristicsSet" EntitySet="CharacteristicsSet"/><End Role="Article_masterSet" EntitySet="Article_masterSet"/></AssociationSet>
+				<AssociationSet Name="FK_Cart_itemsSet_Article_masterSet" Association="ReverseLogistics.FK_Cart_itemsSet_Article_masterSet"><End Role="Cart_itemsSet" EntitySet="Cart_itemsSet"/><End Role="Article_masterSet" EntitySet="Article_masterSet"/></AssociationSet>
+				<AssociationSet Name="FK_Refurbished_stocksSet_Article_masterSet" Association="ReverseLogistics.FK_Refurbished_stocksSet_Article_masterSet"><End Role="Refurbished_stocksSet" EntitySet="Refurbished_stocksSet"/><End Role="Article_masterSet" EntitySet="Article_masterSet"/></AssociationSet>
+				<AssociationSet Name="FK_StockTransferOrdersSet_Article_masterSet"
+					Association="ReverseLogistics.FK_StockTransferOrdersSet_Article_masterSet"><End Role="StockTransferOrdersSet" EntitySet="StockTransferOrdersSet"/><End Role="Article_masterSet" EntitySet="Article_masterSet"/></AssociationSet>
+				<AssociationSet Name="FK_Refurbished_stocksSet_StockSet" Association="ReverseLogistics.FK_Refurbished_stocksSet_StockSet"><End Role="Refurbished_stocksSet" EntitySet="Refurbished_stocksSet"/><End Role="StockSet" EntitySet="StockSet"/></AssociationSet>
+				<AssociationSet Name="FK_Order_productsSet_StockSet" Association="ReverseLogistics.FK_Order_productsSet_StockSet"><End Role="Order_productsSet" EntitySet="Order_productsSet"/><End Role="StockSet" EntitySet="StockSet"/></AssociationSet>
+				<AssociationSet Name="FK_StockSet_CharacteristicsSet" Association="ReverseLogistics.FK_StockSet_CharacteristicsSet"><End Role="StockSet" EntitySet="StockSet"/><End Role="CharacteristicsSet" EntitySet="CharacteristicsSet"/></AssociationSet>
+				<AssociationSet Name="FK_Cart_itemsSet_CharacteristicsSet" Association="ReverseLogistics.FK_Cart_itemsSet_CharacteristicsSet"><End Role="Cart_itemsSet" EntitySet="Cart_itemsSet"/><End Role="CharacteristicsSet" EntitySet="CharacteristicsSet"/></AssociationSet>
+				<AssociationSet Name="FK_Refurbished_stocksSet_CharacteristicsSet"
+					Association="ReverseLogistics.FK_Refurbished_stocksSet_CharacteristicsSet"><End Role="Refurbished_stocksSet" EntitySet="Refurbished_stocksSet"/><End Role="CharacteristicsSet" EntitySet="CharacteristicsSet"/></AssociationSet>
+				<AssociationSet Name="FK_Delivery_notesSet_OrdersSet" Association="ReverseLogistics.FK_Delivery_notesSet_OrdersSet"><End Role="Delivery_notesSet" EntitySet="Delivery_notesSet"/><End Role="OrdersSet" EntitySet="OrdersSet"/></AssociationSet>
+				<AssociationSet Name="FK_Order_productsSet_OrdersSet" Association="ReverseLogistics.FK_Order_productsSet_OrdersSet"><End Role="Order_productsSet" EntitySet="Order_productsSet"/><End Role="OrdersSet" EntitySet="OrdersSet"/></AssociationSet>
+				<AssociationSet Name="FK_ReturnsSet_OrdersSet" Association="ReverseLogistics.FK_ReturnsSet_OrdersSet"><End Role="ReturnsSet" EntitySet="ReturnsSet"/><End Role="OrdersSet" EntitySet="OrdersSet"/></AssociationSet>
+				<AssociationSet Name="FK_Delivery_notesSet_ReturnsSet" Association="ReverseLogistics.FK_Delivery_notesSet_ReturnsSet"><End Role="Delivery_notesSet" EntitySet="Delivery_notesSet"/><End Role="ReturnsSet" EntitySet="ReturnsSet"/></AssociationSet>
+				<AssociationSet Name="FK_ReturnItemsSet_ReturnsSet" Association="ReverseLogistics.FK_ReturnItemsSet_ReturnsSet"><End Role="ReturnItemsSet" EntitySet="ReturnItemsSet"/><End Role="ReturnsSet" EntitySet="ReturnsSet"/></AssociationSet>
+			</EntityContainer>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

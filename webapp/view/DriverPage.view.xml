@@ -1,0 +1,78 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns="sap.m"
+	controllerName="com.wipro.vts.controller.DriverPage" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="VTS" showHeader="false">
+		<subHeader>
+			<Toolbar>
+				<core:Icon src="sap-icon://nav-back" class="sapUiSmallMargin iconSize" press="navBack" color="#cae4fb">
+					<core:layoutData>
+						<FlexItemData growFactor="1"/>
+					</core:layoutData>
+				</core:Icon>
+				<ToolbarSpacer/>
+				<Title text="Driver Page" class="driverPageTitle"/>
+				<ToolbarSpacer/>
+				<Select class="sapUiSizeCompact" forceSelection="false" selectedKey="" id="driverSelector" change="onDriverSelect "
+					items="{ path: '/unAvailableDrivers' }">
+					<core:Item key="{ProductId}" text="{FIRST_NAME} {LAST_NAME}"/>
+				</Select>
+			</Toolbar>
+		</subHeader>
+		<content>
+			<VBox>
+				<html:div id="map3" style="height:calc( 100vh - 18rem );"></html:div>
+				<IconTabBar headerMode="Inline" id="idIconTabBarNoIcons" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding customClass">
+					<items>
+						<IconTabFilter text="Order Details">
+							<HBox>
+								<VBox class="sapUiSmallMargin2 ">
+									<Label text="Order number"/>
+									<Label text="Customer"/>
+									<Label text="Delivery Quantity"/>
+									<Label text="Product"/>
+									<Label text="Loaded Quantity:"/>
+								</VBox>
+								<VBox class="sapUiSmallMargin2 ">
+									<Text text="{/driverDets/markerDet/SHNUMBER}"/>
+									<Text text="{/driverDets/markerDet/NAME1}"/>
+									<Text text="{/driverDets/markerDet/LFIMG} M3"/>
+									<Text text="{/driverDets/markerDet/MATNR}"/>
+									<Text text="{/driverDets/markerDet/LFIMG} M3"/>
+								</VBox>
+							</HBox>
+						</IconTabFilter>
+						<IconTabFilter text="Notifications">
+							<ScrollContainer vertical="true" horizontal="false">
+								<List updateFinished="listContextChanged" id="ListID">
+									<NotificationListItem press="onNotificationItemPress" title="{/Notifications/0}" description="{/Notifications/1}" showCloseButton="false"
+										authorName="{/Notifications/2}" datetime=" {markerDet/truckDet/VEH_ID}" authorPicture="{/Notifications/3}"></NotificationListItem>
+								</List>
+							</ScrollContainer>
+						</IconTabFilter>
+						<IconTabFilter text="Conversations">
+							<ScrollContainer vertical="true" horizontal="false">
+								<VBox>
+									<HBox class="sapUiSmallMargin2 ">
+										<Button class="sapUiLargeMarginBegin sapUiSizeCompact" width="10rem" type="Accept" text="Open Chat" press="onOpenChatWIndow"/>
+									</HBox>
+								</VBox>
+							</ScrollContainer>
+						</IconTabFilter>
+						<IconTabFilter text="Discharge Summary">
+							<VBox>
+								<HBox class="sapUiSmallMargin2 ">
+									<VBox class="sapUiSmallMargin2 "><Label text="Quantity Delivered: "/></VBox>
+									<Input class="sapUiSizeCompact"/>
+								</HBox>
+								<HBox class="sapUiSmallMargin2 ">
+									<VBox class="sapUiSmallMargin2 "><Label text="Recieved By:"/></VBox>
+									<Input class="sapUiMediumMarginBegin sapUiSizeCompact"/>
+									<Button id="signOffButton" class="sapUiLargeMarginBegin sapUiSizeCompact" visible="false" width="10rem" type="Accept" text="Submit" press="onsignOffButtonPress"/>
+								</HBox>
+							</VBox>
+						</IconTabFilter>
+					</items>
+				</IconTabBar>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

@@ -1,0 +1,42 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.wipro.vts.controller.Conversations"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="VTS" showHeader="false">
+		<subHeader>
+			<Toolbar>
+				<core:Icon src="sap-icon://nav-back" class="sapUiSmallMargin iconSize" press="navBack" color="#cae4fb">
+					<core:layoutData>
+						<FlexItemData growFactor="1"/>
+					</core:layoutData>
+				</core:Icon>
+				<ToolbarSpacer/>
+				<Title text="Conversations" class="driverPageTitle"/>
+				<ToolbarSpacer/>
+				<Select class="sapUiSizeCompact" forceSelection="false" selectedKey="" id="driverSelector" change="onDriverSelect " items="{ path: '/unAvailableDrivers' }">
+					<core:Item key="{ProductId}" text="{FIRST_NAME} {LAST_NAME}"/>
+				</Select>
+			</Toolbar>
+		</subHeader>
+		<content>
+			<VBox>
+				<VBox height="20rem">
+					<Timeline id="idTimeline" xmlns="sap.suite.ui.commons" sortOldestFirst="true" enableDoubleSided="false" content="{/driverChatModel}">
+						<content>
+							<TimelineItem id="idTemplateItem" dateTime="{MessageTime}" userNameClickable="true" userPicture="{Photo}" text="{Message}" userName="{Name}"></TimelineItem>
+						</content>
+					</Timeline>
+				</VBox>
+				<VBox class="sapUiSmallMargin2 ">
+					<Input width="10rem" class="sapUiLargeMarginBegin sapUiSizeCompact convoMesgBox" value="{/comandConvoMessage}"/>
+					<Button class="sapUiLargeMarginBegin sapUiSizeCompact" width="10rem" type="Accept" text="Send" press="onMessageSend"/>
+				</VBox>
+			</VBox>
+		</content>
+		<!--<footer>-->
+		<!--	<Toolbar>-->
+		<!--		<Label class="sapUiMediumMarginBegin" text="Message: " width="5rem"/>-->
+		<!--		<Input class="sapUiMediumMarginBegin sapUiSizeCompact"  value="{/comandConvoMessage}"/>-->
+		<!--		<Button class="sapUiSizeCompact" width="8rem" type="Accept" text="Send" press="onMessageSend"/>-->
+		<!--	</Toolbar>-->
+		<!--</footer>-->
+	</Page>
+</mvc:View>

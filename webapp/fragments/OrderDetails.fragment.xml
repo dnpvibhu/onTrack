@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog title="Order Alloted" afterClose="onAfterClose">
+		<VBox>
+			<Text class="sapUiSmallMargin | sapUiSmallMargin2" text="Order {SHNUMBER} is alloted for shippment"/>
+			<!--<Label class="sapUiSmallMargin2 | sapUiSmallMargin" text="Do you want to goto Monitoring Sreen?"/>-->
+		</VBox>
+		<beginButton>
+			<Button type="Default" text="OK" press="onscheduledTruckSelect2"/>
+		</beginButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,46 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.wipro.vts.controller.TruckLoading"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Loaded Screen" showHeader="true" showNavButton="true" navButtonPress="navBack" class="ordersPage">
+		<!--<subHeader>
+			<Bar class="customTitle">
+				<contentLeft>
+					<Text class="homeLabel" text="Welcome {userapi>/lastName}, {userapi>/firstName}"></Text>
+				
+				</contentLeft>
+				<contentMiddle>
+					<Title class="firstTitle" text="Unallocated Delivery Orders" ></Title>
+				</contentMiddle>
+				<contentRight>
+					<IconTabBar upperCase="true" items="{/weather/list}" expandable="false" expanded="false" class="weatherForecast sapUiTinyMarginTop">
+						<items>
+							<IconTabFilter text="{ path:'dt', formatter:'.relativeDate' }" count="{ path:'main/temp', formatter:'.kelvinToCel' }°C"
+								icon="https://openweathermap.org/img/w/{weather/0/icon}.png"/>
+						</items>
+					</IconTabBar>
+				</contentRight>
+			</Bar>
+		</subHeader>-->
+		<Table items="{path:'/allotmentDetails'}" class="sapUiResponsiveContentPadding">
+			<columns>
+				<Column width="12em"><Text text="Truck No"/></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Order No"/></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Shipping To"/></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Right"><Text text="Destination"/></Column>
+				<Column hAlign="Right"><Text text="Quantity"/></Column>
+				<Column hAlign="Right"><Text text="Product"/></Column>
+			</columns>
+			<items >
+				<ColumnListItem type="Active" press="onOrderSelect">
+					<cells>
+						<Text text="{truckDetails/VEH_ID}"/>
+						<Text text="{destinationAddress/SHNUMBER}"/>
+						<Text text="{destinationAddress/NAME1}"/>
+						<Text text="{destinationAddress/CITY1}"/>
+						<Text text="{destinationAddress/LFIMG} Liters"/>
+						<Text text="{destinationAddress/MATNR}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</Page>
+</mvc:View>

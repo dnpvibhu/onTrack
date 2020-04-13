@@ -1,0 +1,132 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:viz="sap.viz.ui5.controls"
+	displayBlock="true" xmlns:c="sap.suite.ui.microchart" xmlns:suite="sap.suite.ui.commons" xmlns:core="sap.ui.core">
+	<Popover title="Driver: {/TruckData/driverDet/FIRST_NAME} " xmlns:html="http://www.w3.org/1999/xhtml" placement="Auto" class="popupClass">
+		<customHeader>
+			<Bar >
+				<contentLeft>
+					<Title class="sapUiSmallMarginBegin" text="Driver: {/TruckData/driverDet/FIRST_NAME} {/TruckData/driverDet/LAST_NAME}"></Title>
+				</contentLeft>
+				<contentMiddle>
+					<Title text="Truck: {/TruckData/truckDet/VEH_ID}"></Title>
+				</contentMiddle>
+				<contentRight >
+					<Title class="sapUiSmallMarginEnd" text="SHPMT Qty: {/thing/LFIMG} M3"></Title>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<VBox>
+				<VBox width="38rem" height="9rem">
+					<HBox >
+						<VBox class="sapUiSmallMargin">
+							<Title text="Starting Point Reading"/>
+							<HBox>
+								<VBox >
+									<Label text="Pressure:"/>
+									<Label text="Temperature:"/>
+									<Label text="Ullage:"/>
+								</VBox>
+								<VBox class="sapUiSmallMargin2 ">
+									<Text text="1 Bar"/>
+									<Text text="28 Deg C"/>
+									<Text text="1 Meter"/>
+								</VBox>
+							</HBox>
+						</VBox>
+						<VBox class="sapUiSmallMarginTop sapUiXLMarginBegin">
+							<Title text="Current Reading"/>
+							<HBox>
+								<VBox >
+									<Label text="Pressure:"/>
+									<Label text="Temperature:"/>
+									<Label text="Ullage:"/>
+								</VBox>
+								<VBox class="sapUiSmallMargin2 ">
+									<Text text="{SensorDetails/currPressure} Bar"/>
+									<Text text="{SensorDetails/currTemp} Deg C"/>
+									<Text text="1 Meter"/>
+								</VBox>
+							</HBox>
+						</VBox>
+						<!--<VBox class="sapUiSmallMarginTop sapUiXLMarginBegin">-->
+						<!--	<Title text="Order Details"/>-->
+						<!--	<HBox>-->
+						<!--		<VBox >-->
+						<!--			<Label text="Order No:"/>-->
+						<!--			<Label text="Customer Name:"/>-->
+						<!--			<Label text="Shipment Quantity:"/>-->
+						<!--			<Label text="Product:"/>-->
+						<!--		</VBox>-->
+						<!--		<VBox class="sapUiSmallMargin2 ">-->
+						<!--			<Text text="{/thing/SHNUMBER}"/>-->
+						<!--			<Text text="{/thing/NAME1}"/>-->
+						<!--			<Text text="{/thing/LFIMG} Gallons"/>-->
+						<!--			<Text text="{/thing/MATNR}"/>-->
+						<!--		</VBox>-->
+						<!--	</HBox>-->
+						<!--</VBox>-->
+					</HBox>
+				</VBox>
+				<VBox>
+					<HBox>
+						<VBox class="basicDataMarginTop" width="50%">
+							<viz:VizFrame vizType="timeseries_line" width="100%" class="sapUiTinyMarginTop" height="20rem" uiConfig="{applicationSet:'fiori'}"
+								renderComplete="chartRendered"
+								vizProperties="{ title: { visible: false, text: '' }, legend: { visible: true }, dataLabel: { visible: true }, valueAxis:{ title:'Values' }, plotArea: { window: { start: 'firstDataPoint', end: 'lastDataPoint' }, isSmoothed:true, marker:{ shape:'square', size:4 } } }">
+								<viz:dataset xmlns:viz.data="sap.viz.ui5.data">
+									<viz.data:FlattenedDataset data="{PredictionData}">
+										<viz.data:dimensions>
+											<viz.data:DimensionDefinition name="TIME" value="{TIME_STAMP}" dataType="date"/>
+										</viz.data:dimensions>
+										<viz.data:measures>
+											<viz.data:MeasureDefinition name="Temperature" value="{Temperature}"/>
+											<viz.data:MeasureDefinition name="Pressure" value="{Pressure}"/>
+										</viz.data:measures>
+									</viz.data:FlattenedDataset>
+								</viz:dataset>
+								<viz:feeds>
+									<viz.feeds:FeedItem xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" uid="valueAxis" type="Measure" values="Temperature"/>
+									<!--<viz.feeds:FeedItem xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" uid="valueAxis" type="Measure" values="Pressure"/>-->
+									<viz.feeds:FeedItem xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" uid="timeAxis" type="Dimension" values="TIME"/>
+								</viz:feeds>
+							</viz:VizFrame>
+						</VBox>
+						<VBox class="basicDataMarginTop" width="50%">
+							<viz:VizFrame vizType="timeseries_line" width="100%" class="sapUiTinyMarginTop" height="20rem" uiConfig="{applicationSet:'fiori'}"
+								renderComplete="chartRendered"
+								vizProperties="{ title: { visible: false, text: '' }, legend: { visible: true }, dataLabel: { visible: true }, valueAxis:{ title:'Values' }, plotArea: { window: { start: 'firstDataPoint', end: 'lastDataPoint' }, isSmoothed:true, marker:{ shape:'square', size:4 } } }">
+								<viz:dataset xmlns:viz.data="sap.viz.ui5.data">
+									<viz.data:FlattenedDataset data="{PredictionData}">
+										<viz.data:dimensions>
+											<viz.data:DimensionDefinition name="TIME" value="{TIME_STAMP}" dataType="date"/>
+										</viz.data:dimensions>
+										<viz.data:measures>
+											<viz.data:MeasureDefinition name="Temperature" value="{Temperature}"/>
+											<viz.data:MeasureDefinition name="Pressure" value="{Pressure}"/>
+										</viz.data:measures>
+									</viz.data:FlattenedDataset>
+								</viz:dataset>
+								<viz:feeds>
+									<!--<viz.feeds:FeedItem xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" uid="valueAxis" type="Measure" values="Temperature"/>-->
+									<viz.feeds:FeedItem xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" uid="valueAxis" type="Measure" values="Pressure"/>
+									<viz.feeds:FeedItem xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" uid="timeAxis" type="Dimension" values="TIME"/>
+								</viz:feeds>
+							</viz:VizFrame>
+						</VBox>
+					</HBox>
+					<HBox></HBox>
+					<VBox class="sapUiTinyMarginTop"/>
+				</VBox>
+			</VBox>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button text="A " visible="false"/>
+				<ToolbarSpacer/>
+				<Button text="Conversations" press="onConversationPress"/>
+			</Toolbar>
+		</footer>
+		<!--<endButton></endButton>-->
+	</Popover>
+</core:FragmentDefinition>

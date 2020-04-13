@@ -1,0 +1,308 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "com.wipro.vts",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponentForManifest",
+			"version": "0.0.0"
+		},
+		"dataSources": {
+			"ZONTRACK_SHPMT_SRV": {
+				"uri": "/DELL_ER_CorrosionNotification/sap/opu/odata/sap/ZONTRACK_SHPMT_SRV/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/ZONTRACK_SHPMT_SRV/metadata.xml"
+				}
+			},
+			"ZMM_ONTRACK_SRV": {
+				"uri": "/DELL_ER_CorrosionNotification/sap/opu/odata/sap/ZMM_ONTRACK_SRV/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/ZMM_ONTRACK_SRV/metadata.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "com.wipro.vts.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "App"
+		},
+		"dependencies": {
+			"minUI5Version": "1.65.6",
+			"libs": {
+				"sap.ui.layout": {},
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.wipro.vts.i18n.i18n"
+				}
+			},
+			"": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": true,
+				"uri": "model/routes.json"
+			},
+			"ShipmentModel": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZONTRACK_SHPMT_SRV",
+				"preload": true
+			},
+			"MaterialModel": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZMM_ONTRACK_SRV",
+				"preload": true
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			],
+			"js": [
+				{
+					"uri": "js/underscore.js"
+				},
+				{
+					"uri": "js/include-map.js"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "com.wipro.vts.view",
+				"controlAggregation": "pages",
+				"controlId": "app",
+				"clearControlAggregation": false,
+				"bypassed": {
+					"target": []
+				}
+			},
+			"routes": [
+				{
+					"name": "MainPage",
+					"pattern": "",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"MainPage"
+					]
+				},
+				{
+					"name": "Home",
+					"pattern": "Home/:context:",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"Home"
+					]
+				},
+				{
+					"name": "Detail",
+					"pattern": "Detail",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"Detail"
+					]
+				},
+				{
+					"name": "TruckAllotment",
+					"pattern": "TruckAllotment/{context}",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"TruckAllotment"
+					]
+				},
+				{
+					"name": "LaunchView",
+					"pattern": "LaunchView/{context}",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"LaunchView"
+					]
+				},
+				{
+					"name": "AnalysisPage",
+					"pattern": "AnalysisPage/{context}",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"AnalysisPage"
+					]
+				},
+				{
+					"name": "NewDelivery",
+					"pattern": "NewDelivery",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"NewDelivery"
+					]
+				},
+				{
+					"name": "AvailableTruck",
+					"pattern": "AvailableTruck",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"AvailableTruck"
+					]
+				},
+				{
+					"name": "DriverPage",
+					"pattern": "DriverPage/{context}",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"DriverPage"
+					]
+				},
+				{
+					"name": "Notifications",
+					"pattern": "Notifications",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"Notifications"
+					]
+				},
+				{
+					"name": "Conversations",
+					"pattern": "Conversations/:context:",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"Conversations"
+					]
+				},
+				{
+					"name": "TruckLoading",
+					"pattern": "TruckLoading",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"TruckLoading"
+					]
+				}
+			],
+			"targets": {
+				"Home": {
+					"viewType": "XML",
+					"viewName": "Home",
+					"controlAggregation": "pages"
+				},
+				"Detail": {
+					"viewType": "XML",
+					"viewName": "Detail",
+					"controlAggregation": "pages"
+				},
+				"LaunchView": {
+					"viewType": "XML",
+					"viewName": "LaunchView",
+					"controlAggregation": "pages"
+				},
+				"TruckAllotment": {
+					"viewType": "XML",
+					"viewName": "TruckAllotment",
+					"controlAggregation": "pages"
+				},
+				"AnalysisPage": {
+					"viewType": "XML",
+					"viewName": "AnalysisPage",
+					"controlAggregation": "pages"
+				},
+				"MainPage": {
+					"viewType": "XML",
+					"viewName": "MainPage",
+					"controlAggregation": "pages"
+				},
+				"NewDelivery": {
+					"viewType": "XML",
+					"viewName": "NewDelivery",
+					"controlAggregation": "pages"
+				},
+				"AvailableTruck": {
+					"viewType": "XML",
+					"viewName": "AvailableTruck",
+					"controlAggregation": "pages"
+				},
+				"DriverPage": {
+					"viewType": "XML",
+					"viewName": "DriverPage",
+					"controlAggregation": "pages"
+				},
+				"Notifications": {
+					"viewType": "XML",
+					"viewName": "Notifications",
+					"controlAggregation": "pages"
+				},
+				"Conversations": {
+					"viewType": "XML",
+					"viewName": "Conversations"
+				},
+				"TruckLoading": {
+					"viewType": "XML",
+					"viewName": "TruckLoading",
+					"controlAggregation": "pages"
+				}
+			}
+		}
+	},
+	"sap.platform.hcp": {
+		"uri": "webapp",
+		"_version": "1.1.0"
+	}
+}

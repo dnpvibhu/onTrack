@@ -1,0 +1,146 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	controllerName="com.wipro.vts.controller.TruckAllotment" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Truck Assignment for {SHNUMBER}" showHeader="true" showNavButton="true" navButtonPress="navBack" 
+		floatingFooter="true" class="allotmentPage">
+		<!--<subHeader >
+			<Bar class="customTitle">
+				<contentLeft>
+					<HBox>
+						<core:Icon src="img/back.png"/>
+						<Text class="homeLabel" text="Welcome {userapi>/lastName}, {userapi>/firstName}"></Text>
+					</HBox>
+				</contentLeft>
+				<contentMiddle>
+					<Title class="firstTitle" text="Truck Assignment for {SHNUMBER} "></Title>
+				</contentMiddle>
+				<contentRight>
+					<IconTabBar upperCase="true" items="{/weather/list}" expandable="false" expanded="false" class="weatherForecast sapUiTinyMarginTop">
+						<items>
+							<IconTabFilter text="{ path:'dt', formatter:'.relativeDate' }" count="{ path:'main/temp', formatter:'.kelvinToCel' }°C"
+								icon="https://openweathermap.org/img/w/{weather/0/icon}.png"/>
+						</items>
+					</IconTabBar>
+				</contentRight>
+			</Bar>
+		</subHeader>-->
+		<content>
+			<VBox>
+				<html:div id="map2" class="mapClass"></html:div>
+				<HBox class="sapUiSmallMargin">
+					<f:Form id="FormDisplay354" editable="false" width="40rem" class="customForm">
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"
+								emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer title="Order Details">
+								<f:formElements>
+									<f:FormElement label="Customer">
+										<f:fields>
+											<Text text="{NAME1}" id="nameText"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Destination">
+										<f:fields>
+											<Text text="{CITY1}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Deliverable Quantity">
+										<f:fields>
+											<Text text="{LFIMG} Liters"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Deliverable Product">
+										<f:fields>
+											<Text text="{MATNR}"/>
+										</f:fields>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+				</HBox>
+				<VBox class="sapUiSmallMargin">
+					<f:Form id="FormDisplay480_12120Dual" editable="false" class="customForm">
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+								emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer title="Truck Details" id="truckDetailForm">
+								<f:formElements>
+									<f:FormElement label="Available Trucks">
+										<f:fields>
+											<ComboBox showSecondaryValues="true" id="truckSelector" width="250px" selectedKey="{/selectedTruck}" selectionChange="onTruckItemChange" class="sapUiSizeCompact"
+												items="{ path:'/availableTrucks2', sorter:{ path:'AllocationStatus' },  filters : [ { path : 'AllocationStatus', operator : 'EQ', value1 : 'Available'} ] }">
+												<core:ListItem key="{VEH_ID}" text="{VEH_ID}" additionalText="{VEH_MAXVOL}"/>
+											</ComboBox>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Capacity">
+										<f:fields>
+											<Text text="{VEH_MAXVOL}" id="VEH_MAXVOL"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Carrier">
+										<f:fields>
+											<Text text="{CARRIER}" id="truckFuel"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Type">
+										<f:fields>
+											<Text text="{VEH_TYPE}" id="VEH_TYPE"/>
+										</f:fields>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+							<f:FormContainer title="Driver Details" id="driverDetailForm">
+								<f:formElements >
+									<f:FormElement label="Available Drivers">
+										<f:fields>
+											<ComboBox showSecondaryValues="true" id="driverSelector" width="250px" selectionChange="onDriverItemChange" class="sapUiSizeCompact"
+												items="{ path:'/availableDrivers2', sorter:{ path:'allocationStatus' }, filters : [ { path : 'allocationStatus', operator : 'EQ', value1 : 'Available'} ] }">
+												<core:ListItem key="{ProductId}" text="{FIRST_NAME} {LAST_NAME}"/>
+											</ComboBox>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Name">
+										<f:fields>
+											<Text text="{FIRST_NAME} {LAST_NAME}" id="FIRST_NAME"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Code">
+										<f:fields>
+											<Text text="{DRIVERCODE}" id="DRIVERCODE"/>
+										</f:fields>
+									</f:FormElement>
+									<!--<f:FormElement label="Person Code">-->
+									<!--	<f:fields>-->
+									<!--		<Text text="{PERSCODE}" id="driverNo"/>-->
+									<!--	</f:fields>-->
+									<!--</f:FormElement>-->
+									<!--<f:FormElement label="Image">-->
+									<!--	<f:fields>-->
+									<!--		<Image src="{driverImage}" height="100px" width="100px" id="driverImg"/>-->
+									<!--	</f:fields>-->
+									<!--</f:FormElement>-->
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+				</VBox>
+				<!--<Panel class="sapUiDemoFlexBoxSizeAdjustments">
+					<HBox alignContent="Center" alignItems="Center" class="sapUiSmallMargin">
+						
+					</HBox>
+				</Panel>-->
+			</VBox>
+		</content>
+		<footer>
+			<OverflowToolbar class="customFooter">
+				<ToolbarSpacer/>
+				<Button type="Accept" text="Allot Truck" press="onAllocation"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

@@ -1,0 +1,61 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.wipro.vts.controller.MainPage"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="ONTrack" showHeader="false" class="mainPage">
+		<!--	<subHeader>
+			<Bar class="customTitle">
+				<contentLeft>
+					<Text class="homeLabel" text="Welcome {userapi>/lastName}, {userapi>/firstName}"></Text>
+				
+				</contentLeft>
+				<contentMiddle>
+					<Title class="firstTitle" text="Vehicle Tracking System"></Title>
+				</contentMiddle>
+				<contentRight>
+					<IconTabBar upperCase="true" items="{/weather/list}" expandable="false" expanded="false" class="weatherForecast sapUiTinyMarginTop">
+						<items>
+							<IconTabFilter text="{ path:'dt', formatter:'.relativeDate' }" count="{ path:'main/temp', formatter:'.kelvinToCel' }°C"
+								icon="https://openweathermap.org/img/w/{weather/0/icon}.png"/>
+						</items>
+					</IconTabBar>
+				</contentRight>
+			</Bar>
+		</subHeader>-->
+		<content>
+			<HBox width="auto" height="5rem" class="vboxClass">
+				<Image src="./img/logo.svg" width="2.5rem" class="sapUiSmallMargin"/>
+				<Title text="ONTrack" class="sapUiSmallMarginTopBottom"/>
+			</HBox>
+			<VBox>
+				<Panel width="auto" class="sapUiTinyMargin">
+				<HBox >
+					<GenericTile press="onMonitorPress" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Monitor">
+						<TileContent unit="Trucks">
+							<ImageContent src="sap-icon://bus-public-transport"/>
+							<NumericContent value="6" valueColor="Good"/>
+						</TileContent>
+					</GenericTile>
+					<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" press="onNewDilveryPress" header="Unallocated Shipments">
+						<TileContent unit="Delivery">
+							<NumericContent valueColor="Critical" value="{/unAllocatedShipmments}"/>
+						</TileContent>
+					</GenericTile>
+					<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" press="onAvailableTrucks" header="Trucks Master">
+						<TileContent unit="Details" />
+					</GenericTile>
+					<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" press="onNotifications" header="Notifications">
+						
+					</GenericTile>
+					<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" press="onConversations" header="Conversations">
+						
+					</GenericTile>
+				</HBox>
+				</Panel>
+				<GenericTile press="onDriverPage" class="sapUiMediumMarginBegin sapUiTinyMarginTop" header="Driver App">
+					<TileContent unit="{/driverDets/markerDet/driverDet/FIRST_NAME}">
+						<!--<NumericContent value="{/driverDets/markerDet/truckDet/VEH_ID}" valueColor="Good"/>-->
+					</TileContent>
+				</GenericTile>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

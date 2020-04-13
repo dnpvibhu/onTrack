@@ -1,0 +1,123 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form"
+	controllerName="com.wipro.vts.controller.AnalysisPage" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:viz="sap.viz.ui5.controls"
+	xmlns:layout="sap.ui.layout" xmlns:u="sap.uxap">
+	<Page title="VTS" showHeader="false">
+		<subHeader>
+			<Bar class="customTitle">
+				<contentLeft>
+					<Text class="homeLabel" text="Welcome {userapi>/lastName}, {userapi>/firstName}"></Text>
+				</contentLeft>
+				<contentMiddle>
+					<Title class="firstTitle" text="Shipment Details"></Title>
+				</contentMiddle>
+				<contentRight>
+					<IconTabBar upperCase="true" items="{/weather/list}" expandable="false" expanded="false" class="weatherForecast sapUiTinyMarginTop">
+						<items>
+							<IconTabFilter text="{ path:'dt', formatter:'.relativeDate' }" count="{ path:'main/temp', formatter:'.kelvinToCel' }°C"
+								icon="https://openweathermap.org/img/w/{weather/0/icon}.png"/>
+						</items>
+					</IconTabBar>
+				</contentRight>
+			</Bar>
+		</subHeader>
+		<content>
+			<VBox>
+				<!--<f:Form id="FormDisplay354" editable="false">-->
+				<!--	<f:layout>-->
+				<!--		<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"-->
+				<!--			emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>-->
+				<!--	</f:layout>-->
+				<!--	<f:formContainers>-->
+				<!--		<f:FormContainer title="Order Details of {/thing/orderDetail/orderNumber}">-->
+				<!--			<f:formElements>-->
+				<!--				<f:FormElement label="Customer">-->
+				<!--					<f:fields>-->
+				<!--						<Text text="{/thing/orderDetail/orderBy}" id="nameText"/>-->
+				<!--					</f:fields>-->
+				<!--				</f:FormElement>-->
+				<!--				<f:FormElement label="Delivery Destination">-->
+				<!--					<f:fields>-->
+				<!--						<Text text="{/thing/orderDetail/dilverTo}"/>-->
+				<!--					</f:fields>-->
+				<!--				</f:FormElement>-->
+				<!--				<f:FormElement label="Amount to be delivered">-->
+				<!--					<f:fields>-->
+				<!--						<Text text="{/thing/orderDetail/dilveryVol} Liters"/>-->
+				<!--					</f:fields>-->
+				<!--				</f:FormElement>-->
+				<!--				<f:FormElement label="Product to be delivered">-->
+				<!--					<f:fields>-->
+				<!--						<Text text="{/thing/orderDetail/product}"/>-->
+				<!--					</f:fields>-->
+				<!--				</f:FormElement>-->
+				<!--			</f:formElements>-->
+				<!--		</f:FormContainer>-->
+				<!--	</f:formContainers>-->
+				<!--</f:Form>-->
+				<VBox class="sapUiSmallMargin">
+					<f:Form id="FormDisplay480_12120Dual" editable="false">
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+								emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer title="Order Details of {/thingorderNumber}">
+								<f:formElements>
+									<f:FormElement label="Customer">
+										<f:fields>
+											<Text text="{/thing/orderBy}" id="nameText"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Delivery Destination">
+										<f:fields>
+											<Text text="{/thing/dilverTo}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Amount to be delivered">
+										<f:fields>
+											<Text text="{/thing/dilveryVol} Liters"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Product to be delivered">
+										<f:fields>
+											<Text text="{/thing/product}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Truck Number">
+										<f:fields>
+											<Text text="{/thing/truckNo}" id="truckCap"/>
+										</f:fields>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+							<f:FormContainer title="Driver Details" id="driverDetailForm">
+								<f:formElements >
+									<f:FormElement label="Driver Name">
+										<f:fields>
+											<Text text="{/thing/driverName}" id="driverName"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Driver Email">
+										<f:fields>
+											<Text text="{/thing/driverEmail}" id="driverEmail"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Driver Contact No">
+										<f:fields>
+											<Text text="{/thing/driverTel}" id="driverNo"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Driver Image">
+										<f:fields>
+											<Image src="{/thing/driverImage}" height="100px" width="100px" id="driverImg"/>
+										</f:fields>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+				</VBox>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

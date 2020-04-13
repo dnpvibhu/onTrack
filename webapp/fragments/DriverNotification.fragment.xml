@@ -1,0 +1,40 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:viz="sap.viz.ui5.controls"
+	displayBlock="true" xmlns:c="sap.suite.ui.microchart" xmlns:suite="sap.suite.ui.commons" xmlns:core="sap.ui.core">
+	<Dialog title="Acknowledge" contentWidth="37rem" xmlns:html="http://www.w3.org/1999/xhtml">
+		<content>
+			<VBox class="sapUiSmallMargin">
+				<!--<VBox class="sapMBarCustom">-->
+				<!--	<Label text="Action:"/>-->
+				<!--	<Label text="Contact command center ASAP"/>-->
+				<!--	<Label text="Park Truck at safe place"/>-->
+				<!--</VBox>-->
+				<HBox >
+					<VBox class="sapUiSmallMargin2 ">
+						<Label  text="Action:"/>
+					</VBox>
+					<VBox class="sapUiSmallMargin2 ">
+						<Label text="Contact command center ASAP"/>
+						<Label text="Park Truck at safe place"/>
+					</VBox>
+				</HBox>
+				<HBox>
+					<VBox class="sapUiSmallMargin2 ">
+						<Label text="Reason:"/>
+					</VBox>
+					<VBox class="sapUiSmallMargin2 ">
+						<Input class="sapUiSizeCompact" value="{/driverAcknowledgement}"/>
+					</VBox>
+				</HBox>
+				<HBox alignContent="Center" alignItems="Center" justifyContent="Center" fitContainer="true">
+					<Button class="sapUiMediumMarginBegin" press="onOkPress" text="Submit" type="Default"></Button>
+				</HBox>
+			</VBox>
+		</content>
+		<!--<footer>-->
+		<!--	<Toolbar>-->
+		<!--		<ToolbarSpacer/>-->
+		<!--		<Button text="SignOut" press="onFinalSignOut"/>-->
+		<!--	</Toolbar>-->
+		<!--</footer>-->
+	</Dialog>
+</core:FragmentDefinition>

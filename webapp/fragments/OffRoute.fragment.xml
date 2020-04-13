@@ -1,0 +1,118 @@
+	<Popover title="{/TruckData/FIRST_NAME}" xmlns:html="http://www.w3.org/1999/xhtml" placement="Auto"  >
+		<content>
+			<VBox>
+				<VBox width="45rem" height="9rem" class="sapUiSmallMargin">
+					
+					<VBox alignItems="Center" alignContent="Center" justifyContent="Center" class="sapMVBoxMine">
+						<Label text = "Truck is off route" textAlign= "Center" />
+					</VBox>	
+					
+					<f:Form id="FormDisplay480_Trial" editable="false">
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+								emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+						</f:layout>
+						<f:formContainers id="sensorDetailForm">
+							<f:FormContainer title="Initial Readings">
+								<f:formElements>
+									<f:FormElement label="Pressure">
+										<f:fields>
+											<Text text="{/TruckData/SensorDetails/intPressure}" id="nameText"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Temperture">
+										<f:fields>
+											<Text text="{/TruckData/SensorDetails/intTemp}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Innage">
+										<f:fields>
+											<Text text="{/TruckData/SensorDetails/intInnage}"/>
+										</f:fields>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+							<f:FormContainer title="Current Readings">
+								<f:formElements>
+									<f:FormElement label="Pressure">
+										<f:fields>
+											<Text text="{/TruckData/SensorDetails/currPressure}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Temperture">
+										<f:fields>
+											<Text text="{/TruckData/SensorDetails/currTemp}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Innage">
+										<f:fields>
+											<Text text="{/TruckData/SensorDetails/currInnage}"/>
+										</f:fields>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+				</VBox>
+				<VBox>
+					<HBox>
+						<VBox class="basicDataMarginTop" width="50%">
+							<viz:VizFrame vizType="timeseries_line" width="100%" class="sapUiTinyMarginTop" height="20rem" uiConfig="{applicationSet:'fiori'}"
+								renderComplete="chartRendered"
+								vizProperties="{ title: { visible: false, text: '' }, legend: { visible: true }, dataLabel: { visible: true }, valueAxis:{ title:'Values' }, plotArea: { window: { start: 'firstDataPoint', end: 'lastDataPoint' }, isSmoothed:true, marker:{ shape:'square', size:4 } } }">
+								<viz:dataset xmlns:viz.data="sap.viz.ui5.data">
+									<viz.data:FlattenedDataset data="{/PredictionData}">
+										<viz.data:dimensions>
+											<viz.data:DimensionDefinition name="TIME" value="{TIME_STAMP}" dataType="date"/>
+										</viz.data:dimensions>
+										<viz.data:measures>
+											<viz.data:MeasureDefinition name="Temperture" value="{Temperture}"/>
+											<viz.data:MeasureDefinition name="Pressure" value="{Pressure}"/>
+										</viz.data:measures>
+									</viz.data:FlattenedDataset>
+								</viz:dataset>
+								<viz:feeds>
+									<viz.feeds:FeedItem xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" uid="valueAxis" type="Measure" values="Temperture"/>
+									<!--<viz.feeds:FeedItem xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" uid="valueAxis" type="Measure" values="Pressure"/>-->
+									<viz.feeds:FeedItem xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" uid="timeAxis" type="Dimension" values="TIME"/>
+								</viz:feeds>
+							</viz:VizFrame>
+						</VBox>
+						<VBox class="basicDataMarginTop" width="50%">
+							<viz:VizFrame vizType="timeseries_line" width="100%" class="sapUiTinyMarginTop" height="20rem" uiConfig="{applicationSet:'fiori'}"
+								renderComplete="chartRendered"
+								vizProperties="{ title: { visible: false, text: '' }, legend: { visible: true }, dataLabel: { visible: true }, valueAxis:{ title:'Values' }, plotArea: { window: { start: 'firstDataPoint', end: 'lastDataPoint' }, isSmoothed:true, marker:{ shape:'square', size:4 } } }">
+								<viz:dataset xmlns:viz.data="sap.viz.ui5.data">
+									<viz.data:FlattenedDataset data="{/PredictionData}">
+										<viz.data:dimensions>
+											<viz.data:DimensionDefinition name="TIME" value="{TIME_STAMP}" dataType="date"/>
+										</viz.data:dimensions>
+										<viz.data:measures>
+											<viz.data:MeasureDefinition name="Temperture" value="{Temperture}"/>
+											<viz.data:MeasureDefinition name="Pressure" value="{Pressure}"/>
+										</viz.data:measures>
+									</viz.data:FlattenedDataset>
+								</viz:dataset>
+								<viz:feeds>
+									<!--<viz.feeds:FeedItem xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" uid="valueAxis" type="Measure" values="Temperture"/>-->
+									<viz.feeds:FeedItem xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" uid="valueAxis" type="Measure" values="Pressure"/>
+									<viz.feeds:FeedItem xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" uid="timeAxis" type="Dimension" values="TIME"/>
+								</viz:feeds>
+							</viz:VizFrame>
+						</VBox>
+					</HBox>
+					<HBox></HBox>
+					<VBox id="chart_div" class="sapUiTinyMarginTop"/>
+				</VBox>
+			</VBox>
+		</content>
+		<footer>
+			<Toolbar>
+			
+				<ToolbarSpacer/>
+				<Button text="Delivery Details" press="onAnalysisPage"/>
+			</Toolbar>
+		</footer>
+		<endButton></endButton>
+	</Popover>
+</core:FragmentDefinition>

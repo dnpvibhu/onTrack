@@ -1,0 +1,67 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.wipro.vts.controller.LaunchView"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="VTS" showHeader="true" showNavButton="true" navButtonPress="navBack">
+		<!--<subHeader>
+			<Bar class="customTitle">
+				<contentLeft>
+					<Text class="homeLabel" text="Welcome {userapi>/lastName},{userapi>/firstName}"></Text>
+				</contentLeft>
+				<contentMiddle>
+					<Title class="firstTitle" text="Vehicle Tracking System"></Title>
+				</contentMiddle>
+				<contentRight>
+					<IconTabBar upperCase="true" items="{/weather/list}" expandable="false" expanded="false" class="weatherForecast sapUiTinyMarginTop">
+						<items>
+							<IconTabFilter text="{ path:'dt', formatter:'.relativeDate' }" count="{ path:'main/temp', formatter:'.kelvinToCel' }°C"
+								icon="https://openweathermap.org/img/w/{weather/0/icon}.png"/>
+						</items>
+					</IconTabBar>
+				</contentRight>
+			</Bar>
+		</subHeader>-->
+		<customHeader>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Title text="Fleet Performance Management"></Title>
+				<ToolbarSpacer/>
+			</Toolbar>
+		</customHeader>
+		<content>
+			<HBox class="legend">
+				<TileContent visible="{view>/KPICollapsed}" footer="New Delivery">
+					<content>
+						<NumericContent value="2" press="onNewDilveryPress" valueColor="{= (${xsodata>PercentChange} >= 0)? 'Good':'Critical' }"
+							indicator="{= (${xsodata>PercentChange} >= 0)? 'Up':'Down' }" truncateValueTo="6" width="10rem"/>
+					</content>
+				</TileContent>
+				<TileContent visible="{view>/KPICollapsed}" footer="Available Trucks">
+					<content>
+						<NumericContent value="26" press="tonnageDetails" valueColor="{= (${xsodata>TONNAGE_PCT_CHG} >= 0)? 'Good':'Critical' }"
+							indicator="{= (${xsodata>TONNAGE_PCT_CHG} >= 0)? 'Up':'Down' }" truncateValueTo="6" width="10rem"/>
+					</content>
+				</TileContent>
+				<TileContent visible="{view>/KPICollapsed}" footer="Trucks Rerouting Cases">
+					<content>
+						<NumericContent scale="Cases" value="1" press="tonnageKilometers" valueColor="{= (${xsodata>TRIPS_PCT_CHG} >= 0)? 'Good':'Critical' }"
+							indicator="{= (${xsodata>TRIPS_PCT_CHG} >= 0)? 'Up':'Down' }" truncateValueTo="6" width="10rem"/>
+					</content>
+				</TileContent>
+				<TileContent visible="{view>/KPICollapsed}" footer="Sensor Breaching Cases">
+					<content>
+						<NumericContent scale="Cases" value="1" press="fuelPerShift" valueColor="{= (${xsodata>C_PERCENT_CHANGE} >= 0)? 'Critical':'Good' }"
+							indicator="{= (${xsodata>C_PERCENT_CHANGE} >= 0)? 'Up':'Down' }" width="12rem"/>
+					</content>
+				</TileContent>
+				<core:Icon src="sap-icon://navigation-{= ${view>/KPICollapsed}?'left':'right'}-arrow" press="collapseKPIs" class="collapseHandle"/>
+			</HBox>
+			<!--<html:div id="map" style="height:calc( 100vh - 3rem )"></html:div>-->
+			<Panel id="map" class="mapPanel" busy="true"/>
+		</content>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button width="12rem" type="Emphasized" text="Enter Destination" press="onDestinationPress"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

@@ -1,0 +1,525 @@
+/*Form Class*/
+.customForm > div > div > div > div > .sapUiFormTitle {
+    font-size: 1.5rem;
+    color:white;
+}
+
+.customForm > div > div > div > div > div > div .sapUiFormElementLbl .sapMLabel .sapMLabelTextWrapper, 
+.customForm > div > div > div > div > div > div .sapUiFormElementLbl .sapMLabel .sapMLabelColonAndRequired {
+    color: #d6d6d6;
+    font-weight:bold;
+}
+
+.customForm > div > div > div > div > div > div .sapMText {
+    color: white;
+    font-weight:bold;
+}
+
+.customScroll{
+	height: calc( 100vh - 3rem ) !important;
+}
+
+
+/*InfoWindow css */
+.gm-style .gm-style-iw-c > button{
+    display: none !important;
+}
+
+.sapUiXLMarginBegin {
+    margin-left: 10rem !important;
+}
+
+.sapMBarCustom{
+    display: block;
+    width: 100%;
+    position: relative;
+    height: 3rem;
+    line-height: 3rem;
+    color: #666;
+    background-color: red;
+    text-shadow: 0 0 0.125rem #fff;
+    box-shadow: inset 0 -0.0625rem red;
+}
+
+.gm-style .gm-style-iw-t::after {
+    background: linear-gradient(45deg,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 51%,rgba(255,255,255,0) 100%);
+    box-shadow: -2px 2px 2px 0 rgba(178,178,178,.4);
+    content: "";
+    height: 15px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: translate(-50%,-50%) rotate(-45deg);
+    width: 15px;
+}
+
+
+.convoMesgBox {
+    order: 0;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    min-height: auto;
+    min-width: auto;
+    margin-left: 1rem;
+}
+
+.gm-style .gm-style-iw-c {
+    position: absolute;
+    box-sizing: border-box;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    transform: translate(-50%,-100%);
+    background-color: white;
+    border-radius: 8px;
+    padding: 2px;
+    box-shadow: 0 2px 7px 5px rgba(0,0,0,0.3);
+    margin-top: 5px;
+}
+
+.customFooter {
+	background-color: #3f4c8c;
+}
+
+/*Popup Class*/
+.popupClass .sapMPopoverHeader .sapMBar .sapMTitle {
+    color: white;
+    font-size: 1rem;
+}
+
+.iconSize {
+    font-size: 1.5rem;
+}
+
+.iconSize1 {
+    font-size: 3rem;
+}
+
+.customClass .sapMITBNotScrollable,
+.customFooter {
+    background-color: #3f4c8c !important;
+}
+
+.sapMPageHeader .sapMBarMiddle .sapMBarContainer .sapMTitle,
+.driverPageTitle {
+    font-weight: bolder !important;
+    font-size: 1.5rem;
+}
+
+
+/*Page Header*/
+
+.sapContrastPlus.sapMIBar.sapMHeader-CTX,
+.sapContrastPlus .sapMIBar.sapMHeader-CTX {
+    color: #fafafa;
+    background-color: #3f4c8c;
+    background-image: none;
+}
+
+.sapContrastPlus.sapMIBar.sapMSubHeader-CTX,
+.sapContrastPlus .sapMIBar.sapMSubHeader-CTX {
+    color: #fafafa;
+    background-color: #3f4c8c;
+}
+
+
+/*VBox MainPage Title*/
+
+.vboxClass .sapMFlexItem .sapMTitle {
+    font-size: 3.5rem;
+    color: #e0e6ff;
+    text-shadow: 3px 3px #000000;
+    font-family: monospace;
+}
+
+.mainPage .sapMPageEnableScrolling {
+    background-image: url(./img/vts_bg.jpg) !important;
+    background-blend-mode: color;
+    background-color: rgba(0, 37, 206, 0.59);
+    overflow: hidden auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.allotmentPage .sapMPageEnableScrolling, .ordersPage .sapMPageEnableScrolling, .trucksPage .sapMPageEnableScrolling {
+    background-image: url(../img/vts_bg.jpg) !important;
+    background-blend-mode: color;
+    background-color: rgba(0, 37, 206, 0.59);
+    overflow: hidden auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.gm-style-iw {
+    width: 100px important;
+    top: 5px !important;
+    left: 0px !important;
+    background-color: #fff;
+    border: 1px solid rgba(72, 181, 233, 0.6);
+    border-radius: 2px 2px 10px 10px;
+}
+
+#iw-container {
+    margin-bottom: 1px;
+}
+
+.recieved-by-class {
+    margin-left: 2.2rem;
+}
+
+.sapUiSmallMargin2 {
+    margin: 0.3rem !important;
+}
+
+#iw-container .iw-content {
+    font-size: 16px;
+    font-weight: 400;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+/* Enter your custom styles here */
+
+.mapPanel {
+    height: 100% !important;
+}
+
+.mapClassDriverPage {
+    height: calc(100vh - 25rem);
+    width: 40rem;
+    position: absolute;
+    overflow: hidden;
+    margin-left: 36rem;
+    margin-top: 0.5rem;
+    z-index: 5;
+}
+
+.mapClass {
+    height: calc(100vh - 31rem);
+    width: 40rem;
+    position: absolute;
+    overflow: hidden;
+    margin-left: 40rem;
+    margin-top: 0.5rem;
+    z-index: 5;
+}
+
+.sapMBtnInnerCustom {
+    height: 1.5rem;
+    max-width: 1.5rem;
+    width: auto;
+}
+
+.notificationColumn {
+    background: linear-gradient(to right, transparent, #e0f0f6 16%);
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.landingPage .sapMTB {
+    height: 2rem !important;
+}
+
+.sapMVBoxMine {
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    background: bisque;
+}
+
+.sapMTitleNew {
+    color: #fafafa;
+    text-shadow: 0 0 0.125rem #fff;
+}
+
+.sapMHeader-CTXMyHeader {
+    background-color: orangered;
+    box-shadow: inset 0 -1px #ebebeb;
+}
+
+.legend {
+    position: absolute;
+    z-index: 1;
+    background: rgba(221, 230, 236, 0.85);
+    border-radius: 0 0 20px 0;
+}
+
+.collapseHandle {
+    margin: 2rem 0.5rem;
+}
+
+.weatherForecast {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    background: rgb(255, 255, 255);
+    width: 21rem;
+    top: -20px;
+    height: 4.2rem;
+}
+
+.weatherForecast .sapMITBFilterIcon {
+    padding: 0;
+    border: none;
+}
+
+.weatherForecast .sapMITBTab {
+    margin: 0px 0px -16px 0px;
+}
+
+.weatherForecast .sapMITBHead {
+    margin: 0.7rem 0.75rem 0 0.25rem;
+}
+
+.weatherForecast .sapMITH {
+    box-shadow: none;
+}
+
+.weatherForecast .sapMITBArrowScroll {
+    padding: 0 !important;
+}
+
+.customTitle {
+    background-color: white!important;
+}
+
+.customTitle .sapMBarRight {
+    width: 21rem;
+}
+
+.customTitle .sapMSlt {
+    border: none;
+}
+
+.firstTitle {
+    font-family: arial black;
+    font-size: large;
+    font-weight: 500;
+    color: #265cb2;
+}
+
+.homeLabel {
+    font-size: 1rem;
+    font-family: arial black;
+    font-size: small;
+}
+
+.iconSize {
+    font-size: 1.5rem;
+}
+
+.iconSize1 {
+    font-size: 3rem;
+}
+
+.customClass .sapMITBNotScrollable,
+.customFooter {
+    background-color: #3f4c8c !important;
+}
+
+.sapMPageHeader .sapMBarMiddle .sapMBarContainer .sapMTitle,
+.driverPageTitle {
+    font-weight: bolder !important;
+    font-size: 1.5rem;
+}
+
+
+/*Popover Class*/
+
+.sapMPopover .sapMIBar.sapMHeader-CTX {
+    background-color: #3f4c8c !important;
+}
+
+
+/*Page Header*/
+
+.sapContrastPlus.sapMIBar.sapMHeader-CTX,
+.sapContrastPlus .sapMIBar.sapMHeader-CTX {
+    color: #fafafa;
+    background-color: #3f4c8c;
+    background-image: none;
+}
+
+.sapContrastPlus.sapMIBar.sapMSubHeader-CTX,
+.sapContrastPlus .sapMIBar.sapMSubHeader-CTX {
+    color: #fafafa;
+    background-color: #3f4c8c;
+}
+
+
+/*VBox MainPage Title*/
+
+.vboxClass .sapMFlexItem .sapMTitle {
+    font-size: 2.5rem;
+    color: #e0e6ff;
+    text-shadow: 3px 3px #000000;
+}
+
+.mainPage .sapMPageEnableScrolling {
+    background-image: url(https://idesignads.ae/wp-content/uploads/2016/01/gps.jpg) !important;
+    background-blend-mode: color;
+    background-color: rgba(0, 37, 206, 0.59);
+    overflow: hidden auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.gm-style-iw {
+    width: 100px important;
+    top: 5px !important;
+    left: 0px !important;
+    background-color: #fff;
+    border: 1px solid rgba(72, 181, 233, 0.6);
+    border-radius: 2px 2px 10px 10px;
+}
+
+#iw-container {
+    margin-bottom: 1px;
+}
+
+.sapUiSmallMargin2 {
+    margin: 0.3rem !important;
+}
+
+#iw-container .iw-content {
+    font-size: 8px;
+    font-weight: 400;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+/* Enter your custom styles here */
+
+.mapPanel {
+    height: 100% !important;
+}
+
+.mapClassDriverPage {
+    height: calc(100vh - 25rem);
+    width: 40rem;
+    position: absolute;
+    overflow: hidden;
+    margin-left: 36rem;
+    margin-top: 0.5rem;
+    z-index: 5;
+}
+
+.mapClass {
+    height: calc(100vh - 25rem);
+    width: 40rem;
+    position: absolute;
+    overflow: hidden;
+    margin-left: 36rem;
+    margin-top: 0.5rem;
+    z-index: 5;
+}
+
+.sapMBtnInnerCustom {
+    height: 1.5rem;
+    max-width: 1.5rem;
+    width: auto;
+}
+
+.notificationColumn {
+    background: linear-gradient(to right, transparent, #e0f0f6 16%);
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.landingPage .sapMTB {
+    height: 2rem !important;
+}
+
+.sapMVBoxMine {
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    background: bisque;
+}
+
+.sapMTitleNew {
+    color: #fafafa;
+    text-shadow: 0 0 0.125rem #fff;
+}
+
+.sapMHeader-CTXMyHeader {
+    background-color: orangered;
+    box-shadow: inset 0 -1px #ebebeb;
+}
+
+.legend {
+    position: absolute;
+    z-index: 1;
+    background: rgba(221, 230, 236, 0.85);
+    border-radius: 0 0 20px 0;
+}
+
+.collapseHandle {
+    margin: 2rem 0.5rem;
+}
+
+.weatherForecast {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    background: rgb(255, 255, 255);
+    width: 21rem;
+    top: -20px;
+    height: 4.2rem;
+}
+
+.weatherForecast .sapMITBFilterIcon {
+    padding: 0;
+    border: none;
+}
+
+.weatherForecast .sapMITBTab {
+    margin: 0px 0px -16px 0px;
+}
+
+.weatherForecast .sapMITBHead {
+    margin: 0.7rem 0.75rem 0 0.25rem;
+}
+
+.weatherForecast .sapMITH {
+    box-shadow: none;
+}
+
+.weatherForecast .sapMITBArrowScroll {
+    padding: 0 !important;
+}
+
+.customTitle {
+    background-color: white!important;
+}
+
+.customTitle .sapMBarRight {
+    width: 21rem;
+}
+
+.customTitle .sapMSlt {
+    border: none;
+}
+
+.firstTitle {
+    font-family: arial black;
+    font-size: large;
+    font-weight: 500;
+    color: #265cb2;
+}
+
+.homeLabel {
+    font-size: 1rem;
+    font-family: arial black;
+    font-size: small;
+}
