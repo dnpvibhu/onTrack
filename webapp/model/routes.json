@@ -150,13 +150,13 @@
 	"Drivers1": [{
 		"DRIVERCODE": "arun46@outlook.com",
 		"PERSCODE": "202-555-0107",
-		"FIRST_NAME": "THOMAS T",
+		"FIRST_NAME": "CLARK C",
 		"driverImage": "./img/d1.jpeg",
 		"allocationStatus": "Available"
 	}, {
 		"DRIVERCODE": "emmaw12@icloud.com",
 		"PERSCODE": "202-555-0184",
-		"FIRST_NAME": "PATRICK P",
+		"FIRST_NAME": "PETER PAUL",
 		"driverImage": "./img/emma.png",
 		"allocationStatus": "Available"
 	}, {
@@ -236,13 +236,13 @@
 		"MessageTime": "19/03/2020 at 1:34 pm"
 	}],
 
-	"PATRICK P": [{
+	"PETER PAUL": [{
 		"Name": "Command Center",
 		"Photo": "./img/CC.png",
 		"Message": "Hello There, \n what is the expected time of your arrival?",
 		"MessageTime": "19/03/2020 at 1:30 pm"
 	}, {
-		"Name": "PATRICK P",
+		"Name": "PETER PAUL",
 		"Photo": "./img/emma.png",
 		"Message": "Hello, \n I'm expected to be there by Sunday morning ",
 		"MessageTime": "19/03/2020 at 1:31 pm"
@@ -252,7 +252,7 @@
 		"Message": "Can you help me with the time?",
 		"MessageTime": "19/03/2020 at 1:32 pm"
 	}, {
-		"Name": "PATRICK P",
+		"Name": "PETER PAUL",
 		"Photo": "./img/emma.png",
 		"Message": "I'll be reaching there by 3'o clock in afternoon.",
 		"MessageTime": "19/03/2020 at 1:33 pm"
@@ -263,13 +263,13 @@
 		"MessageTime": "19/03/2020 at 1:34 pm"
 	}],
 
-	"THOMAS T": [{
+	"CLARK C": [{
 		"Name": "Command Center",
 		"Photo": "./img/CC.png",
 		"Message": "Hello There, \n what is the expected time of your arrival?",
 		"MessageTime": "19/03/2020 at 1:30 pm"
 	}, {
-		"Name": "THOMAS T",
+		"Name": "CLARK C",
 		"Photo": "./img/d1.jpeg",
 		"Message": "Hello, \n I'm expected to be there by Sunday morning ",
 		"MessageTime": "19/03/2020 at 1:31 pm"
@@ -279,7 +279,7 @@
 		"Message": "Can you help me with the time?",
 		"MessageTime": "19/03/2020 at 1:32 pm"
 	}, {
-		"Name": "THOMAS T",
+		"Name": "CLARK C",
 		"Photo": "./img/d1.jpeg",
 		"Message": "I'll be reaching there by 3'o clock in afternoon.",
 		"MessageTime": "19/03/2020 at 1:33 pm"
@@ -291,9 +291,9 @@
 	}],
 
 	"DropDownSelector": [{
-		"selectedDriver": "THOMAS T"
+		"selectedDriver": "CLARK C"
 	}, {
-		"selectedDriver": "PATRICK P"
+		"selectedDriver": "PETER PAUL"
 	}, {
 		"selectedDriver": "William Black"
 	}, {
@@ -319,7 +319,7 @@
 		"VEH_ID": "32423",
 		"DRIVERCODE": "arun@gmail.com",
 		"PERSCODE": "123871263",
-		"FIRST_NAME": "THOMAS T",
+		"FIRST_NAME": "CLARK C",
 		"driverImage": "./img/d1.jpeg",
 		"allocationStatus": "Available",
 		"truckImage": "./img/t2.jpg",
@@ -333,7 +333,7 @@
 		"VEH_ID": "47234",
 		"DRIVERCODE": "emma@gmail.com",
 		"PERSCODE": "123871263",
-		"FIRST_NAME": "PATRICK P",
+		"FIRST_NAME": "PETER PAUL",
 		"driverImage": "./img/emma.png",
 		"allocationStatus": "Available",
 		"truckImage": "./img/t3.jpg",

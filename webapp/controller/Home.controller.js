@@ -44,6 +44,12 @@ sap.ui.define([
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.getRoute("Home").attachPatternMatched(function (oEvent) {
 
+				if (com.wipro.vts.truckMarkers && com.wipro.vts.truckMarkers.length > 0) {
+					for (var i in com.wipro.vts.truckMarkers) {
+						com.wipro.vts.truckMarkers[i].set("map", map);
+					}
+				}
+
 				this.getView().setBusy(true);
 				jQuery.sap.delayedCall(2000, this, function () {
 					this.getView().setBusy(false);
@@ -64,7 +70,7 @@ sap.ui.define([
 				this.getView().setModel(new JSONModel({
 					KPICollapsed: true
 				}), "view");
-				com.wipro.vts.truckMarkers = [];
+
 				com.wipro.vts.this = this;
 				this.getView().getModel().setProperty("/PredictionData", {});
 			}, this);
@@ -77,6 +83,7 @@ sap.ui.define([
 		//Rendering Map
 		onAfterRendering: function () {
 			if (!firstLoad) {
+				com.wipro.vts.truckMarkers = [];
 				this.mapRendering();
 			}
 			// Map Rendering
@@ -368,9 +375,7 @@ sap.ui.define([
 
 							}
 
-							if (marker.get("popUpStatus") === 0) {
-								that.attachClickEvent(marker);
-							}
+							that.attachClickEvent(marker);
 
 							//Speed details in infoWindow 
 							var min = Math.ceil(50);
@@ -401,14 +406,11 @@ sap.ui.define([
 								if (this.get("stepsArray").length - 1 === this.get("stepIndex")) {
 									infowindow.setContent("0 MPH"); //setting speed to O MPH 
 									this.setIcon("img/shipped.png");
-									if (sap.ui.getCore().byId("signOffButton")) {
-										sap.ui.getCore().byId("signOffButton").setVisible(true);
-										this.set("signOffButton", true);
-									}
-									if (!this.get("signedOff")) {
+									if (this.get("signedOff") === false) {
 										return;
 									} else {
-										this.set("signedOff", false);
+										//this.set("signedOff", false);
+										this.set("stepIndex", 0);
 										this.set("stepsArray", (this.get("stepsArray").reverse()));
 									}
 								} else {
@@ -418,12 +420,9 @@ sap.ui.define([
 
 								if (this.get("stepsArray").length >= this.get("stepIndex")) {
 									this.set("stepIndex", this.get("stepIndex") + 1);
-								} else {
-									this.set("stepIndex", 0);
-									this.set("stepsArray", (this.get("stepsArray").reverse()));
 								}
 								this.setPosition(this.get("stepsArray")[this.get("stepIndex")]);
-							}.bind(marker), 7000)
+							}.bind(marker), 8000)
 						} else {
 							//Plotting deviated Truck Marker
 							marker = new GMaps.Marker({
@@ -579,7 +578,7 @@ sap.ui.define([
 								this.set("stepIndex", this.get("stepIndex") + 1);
 							}
 							this.setPosition(this.get("stepsArray")[this.get("stepIndex")]);
-						}.bind(marker), 7000)
+						}.bind(marker), 8000)
 					} else {
 						console.log("Not Printing");
 						reject(status);
@@ -599,27 +598,6 @@ sap.ui.define([
 				error: function () {}
 			});
 			firstLoad = true;
-
-		},
-
-		markerInfowindow: function (marker) {
-
-			var speed = Math.floor((Math.random() * 60) + 40) + " kph";
-			var infowindow = new google.maps.InfoWindow({
-				content: speed,
-				disableAutoPan: true,
-				maxWidth: 100
-			});
-			infowindow.open(map, marker);
-
-			setInterval(function () {
-				if (marker.get("stepsArray").length - 1 === marker.get("stepIndex")) {
-					infowindow.setContent("0 kph");
-				} else {
-					speed = Math.floor((Math.random() * 60) + 40) + " kph";
-					marker.infowindow.setContent(speed);
-				}
-			}.bind(marker), 5000);
 
 		},
 
@@ -669,7 +647,7 @@ sap.ui.define([
 
 			jQuery.sap.intervalCall(8000, this, function () {
 				var v1 = 30 + Math.round(Math.random() * 1);
-				var v2 = (Math.random() * 0.1 + 1.0).toFixed(1);
+				var v2 = (Math.random() * 0.3 + 1.0).toFixed(1);
 				if (!marker.get("raiseAlert")) {
 					v1 = 20 + Math.round(Math.random() * 1);
 					v2 = 1;

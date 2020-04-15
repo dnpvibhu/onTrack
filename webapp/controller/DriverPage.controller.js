@@ -13,7 +13,7 @@ sap.ui.define([
 
 	var firstLoad = false;
 	//35.2018863,-101.9450251
-	var newMarker;
+	var newMarker2;
 	var map;
 	var address;
 	var directionsDisplay;
@@ -27,7 +27,7 @@ sap.ui.define([
 		"Message": "Hello There, \n what is the expected time of your arrival?",
 		"MessageTime": "20/03/2020 at 1:30 pm"
 	}, {
-		"Name": "ISMAIL I",
+		"Name": "THOMAS T",
 		"Photo": "./img/black.jpeg",
 		"Message": "Hello, \n I'm expected to be there by Sunday morning ",
 		"MessageTime": "20/03/2020 at 1:31 pm"
@@ -41,9 +41,9 @@ sap.ui.define([
 
 			oRouter.getRoute("DriverPage").attachPatternMatched(function (oEvent) {
 				var no = oEvent.getParameter("arguments").context;
-				var chatDriver = this.getView().getModel().getProperty("/AlloatedOrders/" + no + "/markerDet/driverDet/FIRST_NAME")+" I";
+				var chatDriver = this.getView().getModel().getProperty("/AlloatedOrders/" + no + "/markerDet/driverDet/FIRST_NAME") + " I";
 				driverSelectionMain = no;
-				this.onDataLoading(driverSelectionMain);
+				this.onDataLoading(2);
 				this.onChatLoading(chatDriver);
 
 				com.wipro.vts.this = this;
@@ -53,6 +53,9 @@ sap.ui.define([
 		},
 
 		onDataLoading: function (selectedDriver) {
+
+			var selectedDriver2 = this.getView().getModel().getProperty("/AlloatedOrders/" + selectedDriver);
+			this.newRouteResult = this.getView().getModel().getProperty("/AlloatedOrders/" + selectedDriver + "/routeResult");
 
 			this.getView().byId("driverSelector").setSelectedKey("");
 			this.getView().getModel().setProperty("/driverAcknowledgement", "");
@@ -84,31 +87,23 @@ sap.ui.define([
 				alertNotification = ["Pressure sensor - Level Breached (1.20 Bar)", "Action: Contact command center ASAP", "At: " + dateTime,
 					"img/senAlert.png"
 				];
-
-				// alertNotification = {
-				// 	title: "Pressure sensor - Level Breached (1.04 Bar)",
-				// 	action: "Action: Contact command center ASAP",
-				// 	time: "At: " + dateTime,
-				// 	img: "img/senAlert.png"
-				// };
 			}
 			this.getView().getModel().setProperty("/Notifications", alertNotification);
 
-			if (firstLoad === true) {
-				this.onMapLoading();
-				// this.selectedDriver2 = "ISMAIL I";
-			}
+			//	if (firstLoad === true) {
+			this.onMapLoading(selectedDriver2, this.newRouteResult, selectedDriver);
+			//			}
 
 		},
 
 		//Rendering Map
 		onAfterRendering: function () {
-			this.onMapLoading();
+			//this.onMapLoading();
 			// Map Rendering
 			this.getView().byId("map3").setBusy(false);
 		},
 
-		onMapLoading: function () {
+		onMapLoading: function (marker, routeResult, selectedDriver) {
 			if (address) {
 				jQuery.sap.delayedCall(1000, this, function () {
 					var mapContainer = this.byId("map3").getDomRef();
@@ -148,86 +143,45 @@ sap.ui.define([
 					//Plotting Route
 					var that = com.wipro.vts.this;
 
-					var request = {
-						origin: address[0],
-						destination: address[1],
-						travelMode: 'DRIVING'
-					};
-					this.directionsService.route(request, function (result, status) {
-						if (status == 'OK') {
-							directionsDisplay = new GMaps.DirectionsRenderer({
-								polylineOptions: {
-									strokeColor: "#6960EC"
-								}
-							});
-							directionsDisplay.setOptions({
-								map: map,
-								suppressMarkers: true
-							});
-							directionsDisplay.setMap(map);
-							directionsDisplay.setDirections(result);
-
-							//Plotting traversing truck
-							newMarker = new GMaps.Marker({
-								position: truckPosition,
-								stepIndex: stepIndex,
-								stepsArray: result.routes[0].overview_path,
-								finalPostion: {
-									mylat: result.routes[0].overview_path[result.routes[0].overview_path.length - 1].lat(),
-									mylng: result.routes[0].overview_path[result.routes[0].overview_path.length - 1].lng()
-								},
-								title: "Truck",
-								map: map,
-								signedOff: false,
-								icon: {
-									"url": "img/onwayTrucks.png"
-								}
-							});
-
-							setInterval(function () {
-								that = com.wipro.vts.this;
-								//	truckPosition = that.driverDet.get("position");
-								newMarker.setPosition(truckPosition);
-								newMarker.set("stepIndex", stepIndex);
-								if (that.stepArrayPrevious === newMarker.get("stepIndex")) {
-									newMarker.setIcon("img/shipped.png");
-									that.getView().byId("signOffButton").setVisible(true);
-									if (newMarker.get("signedOff") === false) {
-										return;
-									} else {
-										that.getView().getModel().setProperty("/AlloatedOrders/" + driverSelectionMain + "/signedOff", true);
-										var val = that.getView().getModel().getProperty("/AlloatedOrders/" + driverSelectionMain + "/signedOff");
-										newMarker.set("signedOff", false);
-										newMarker.set("stepIndex", 0);
-										newMarker.set("stepsArray", (newMarker.get("stepsArray").reverse()));
-									}
-								}
-							}.bind(newMarker), 8000);
-
-							//simulating truck
-							// setInterval(function () {
-							// 	that = com.wipro.vts.this;
-							// if (newMarker.get("stepsArray").length - 1 === newMarker.get("stepIndex")) {
-							// 	newMarker.setIcon("img/shipped.png");
-							// 	that.getView().byId("signOffButton").setVisible(true);
-							// 	if (newMarker.get("signedOff") === false) {
-							// 		return;
-							// 	} else {
-							// 		this.getView().getModel().setProperty("/AlloatedOrders/" + driverSelectionMain + "/signedOff", true);
-							// 		newMarker.set("signedOff", false);
-							// 		newMarker.set("stepIndex", 0);
-							// 		newMarker.set("stepsArray", (newMarker.get("stepsArray").reverse()));
-							// 	}
-							// }
-
-							// 	if (newMarker.get("stepsArray").length >= newMarker.get("stepIndex")) {
-							// 		newMarker.set("stepIndex", newMarker.get("stepIndex") + 1);
-							// 	}
-							// 	newMarker.setPosition(newMarker.get("stepsArray")[newMarker.get("stepIndex")]);
-							// }.bind(newMarker), 8000);
+					directionsDisplay = new GMaps.DirectionsRenderer({
+						polylineOptions: {
+							strokeColor: "#6960EC"
 						}
 					});
+					directionsDisplay.setOptions({
+						map: map,
+						suppressMarkers: true
+					});
+					directionsDisplay.setMap(map);
+					directionsDisplay.setDirections(routeResult);
+					marker.set("map", map);
 
+					setInterval(function () {
+						that = com.wipro.vts.this;
+						if (this.get("stepsArray").length - 1 === this.get("stepIndex")) {
+							this.setIcon("img/shipped.png");
+							that.getView().byId("signOffButton").setVisible(true);
+							if (that.getView().getModel().getProperty("/AlloatedOrders/" + driverSelectionMain + "/signedOff") === false) {
+								return;
+							} else {
+								// this.set("signedOff", true);
+								// this.set("signedOff", false);
+								that.getView().byId("signOffButton").setVisible(false);
+								// this.set("stepIndex", 0);
+								that.getView().getModel().setProperty("/AlloatedOrders/" + selectedDriver + "/signedOff", false);
+								that.getView().getModel().setProperty("/AlloatedOrders/" + selectedDriver + "/stepIndex", 0);
+								that.getView().getModel().setProperty("/AlloatedOrders/" + selectedDriver + "/stepsArray", this.get(
+									"stepsArray").reverse());
+								//this.set("stepsArray", (this.get("stepsArray").reverse()));
+							}
+						}
+
+						// if (this.get("stepsArray").length >= this.get("stepIndex")) {
+						// 	this.set("stepIndex", this.get("stepIndex") + 1);
+						// }
+						// this.setPosition(this.get("stepsArray")[this.get("stepIndex")]);
+
+					}.bind(marker), 8000);
 					//Do everthing above this point
 				});
 			}
@@ -235,8 +189,8 @@ sap.ui.define([
 		},
 
 		onsignOffButtonPress: function () {
-
-			newMarker.set("signedOff", true);
+			//newMarker.set("signedOff", true);
+			this.getView().getModel().setProperty("/AlloatedOrders/" + driverSelectionMain + "/signedOff", true);
 			this.getView().byId("signOffButton").setVisible(false);
 			revertBack = true;
 		},
@@ -270,7 +224,7 @@ sap.ui.define([
 		onChatLoading: function (selectedDriver) {
 			var driverChatModel;
 			this.getView().getModel().setProperty("/driverConvoMessage", "");
-			if (selectedDriver === "ISMAIL I") {
+			if (selectedDriver === "THOMAS T") {
 				driverChatModel = this.getView().getModel().getProperty("/conversationWilliamBlack");
 				if (!driverChatModel) {
 					driverChatModel = messageArray;
@@ -298,9 +252,9 @@ sap.ui.define([
 			};
 			driverChatModel.push(convoMessage);
 			this.getView().getModel().setProperty("/conversationWilliamBlack", driverChatModel);
-			if(firstLoad===true){
-				this.onChatLoading("ISMAIL I");
-			}else{
+			if (firstLoad === true) {
+				this.onChatLoading("THOMAS T");
+			} else {
 				this.onChatLoading(this.selectedDriver2);
 			}
 		},
@@ -346,3 +300,25 @@ sap.ui.define([
 	});
 
 });
+
+//simulating truck
+// setInterval(function () {
+// 	that = com.wipro.vts.this;
+// if (newMarker.get("stepsArray").length - 1 === newMarker.get("stepIndex")) {
+// 	newMarker.setIcon("img/shipped.png");
+// 	that.getView().byId("signOffButton").setVisible(true);
+// 	if (newMarker.get("signedOff") === false) {
+// 		return;
+// 	} else {
+// 		this.getView().getModel().setProperty("/AlloatedOrders/" + driverSelectionMain + "/signedOff", true);
+// 		newMarker.set("signedOff", false);
+// 		newMarker.set("stepIndex", 0);
+// 		newMarker.set("stepsArray", (newMarker.get("stepsArray").reverse()));
+// 	}
+// }
+
+// 	if (newMarker.get("stepsArray").length >= newMarker.get("stepIndex")) {
+// 		newMarker.set("stepIndex", newMarker.get("stepIndex") + 1);
+// 	}
+// 	newMarker.setPosition(newMarker.get("stepsArray")[newMarker.get("stepIndex")]);
+// }.bind(newMarker), 8000);

@@ -9,7 +9,7 @@ sap.ui.define([
 		"Message": "Hello There, \n what is the expected time of your arrival?",
 		"MessageTime": "20/03/2020 at 1:30 pm"
 	}, {
-		"Name": "ISMAIL I",
+		"Name": "THOMAS T",
 		"Photo": "./img/black.jpeg",
 		"Message": "Hello, \n I'm expected to be there by Sunday morning ",
 		"MessageTime": "20/03/2020 at 1:31 pm"
@@ -25,7 +25,7 @@ sap.ui.define([
 				this.getView().byId("driverSelector").setSelectedKey("");
 
 				if (this.selectedDriver === "" || this.selectedDriver === undefined) {
-					this.onChatLoading("ISMAIL I");
+					this.onChatLoading("THOMAS T");
 					firstload = true;
 
 				} else {
@@ -43,7 +43,7 @@ sap.ui.define([
 		onChatLoading: function (selectedDriver) {
 			var driverChatModel;
 			this.getView().getModel().setProperty("/comandConvoMessage", "");
-			if (selectedDriver === "ISMAIL I") {
+			if (selectedDriver === "THOMAS T") {
 				driverChatModel = this.getView().getModel().getProperty("/conversationWilliamBlack");
 				if (driverChatModel === undefined) {
 					driverChatModel = messageArray;
@@ -71,7 +71,7 @@ sap.ui.define([
 			};
 			driverChatModel.push(msg);
 			this.getView().getModel().setProperty("/conversationWilliamBlack", driverChatModel);
-			this.onChatLoading("ISMAIL I");
+			this.onChatLoading("THOMAS T");
 
 		},
 
